@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ *
+ * @category   payment
+ * @package    Multikomerce_Redecard
+ * @copyright  Copyright (c) 2011 MagentoNet (www.magento.net.br)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author     MagentoNet <contato@magento.net.br>
+ */
+-->
+
+<config>
+    <modules>
+        <Multikomerce_Redecard>
+            <version>1.2.5</version>          
+        </Multikomerce_Redecard>
+    </modules>
+    <global>
+        <models>
+            <Multikomerce_Redecard>
+                <class>Multikomerce_Redecard_Model</class>
+            </Multikomerce_Redecard>
+        </models>
+        <resources>
+            <Multikomerce_Redecard_setup>
+                <setup>
+                    <module>Multikomerce_Redecard</module>
+                    <class>Mage_Sales_Model_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </Multikomerce_Redecard_setup>
+            <Multikomerce_Redecard_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </Multikomerce_Redecard_write>
+            <Multikomerce_Redecard_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </Multikomerce_Redecard_read>
+        </resources>
+        <helpers>
+            <Multikomerce_Redecard>
+                <class>Multikomerce_Redecard_Helper</class>
+            </Multikomerce_Redecard>
+        </helpers>
+        <blocks>
+            <Multikomerce_Redecard>
+                <class>Multikomerce_Redecard_Block</class>
+            </Multikomerce_Redecard>
+        </blocks>
+    </global>
+    <frontend>      
+        <routers>
+            <Multikomerce_Redecard>
+                <use>standard</use>
+                <args>
+                    <module>Multikomerce_Redecard</module>
+                    <frontName>komerci</frontName>
+                </args>
+            </Multikomerce_Redecard>
+        </routers>
+        <translate>
+            <modules>
+                <Multikomerce_Redecard>
+                    <files>
+                        <default>Multikomerce_Redecard.csv</default>
+                    </files>
+                </Multikomerce_Redecard>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <Multikomerce_Redecard>
+                    <file>Multikomerce_Redecard.xml</file>
+                </Multikomerce_Redecard>
+            </updates>
+        </layout>
+    </frontend>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Multikomerce_Redecard>
+                    <files>
+                        <default>Multikomerce_Redecard.csv</default>
+                    </files>
+                </Multikomerce_Redecard>
+            </modules>
+        </translate>        
+    </adminhtml>
+
+    <default>
+         <payment>
+             <Multikomerce_Redecard>
+                  <model>Multikomerce_Redecard_Model_Payment</model>
+                  <active>0</active>
+                  <title>Pagamento por cartão de crédito</title>
+                  <order_status>pending</order_status>
+                  <filiacao>000000</filiacao>
+                  <msg_add>Nossa loja tem um ambiente seguro com uma chave de criptografia de 256bits..</msg_add>
+                  <tipo_parcelamento>0</tipo_parcelamento>
+                  <num_max_parc>0</num_max_parc>
+                  <parcelamento_semjuros>0</parcelamento_semjuros>      
+                  <desconto_avista>0</desconto_avista>                  
+            </Multikomerce_Redecard>
+        </payment>
+    </default>
+</config>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_cielo_index>
+        <reference name="root">
+            <action method="setTemplate"><template>empty.phtml</template></action>
+        </reference>
+        <reference name="head">
+            <action method="addCss"><stylesheet>boxes.css</stylesheet></action>
+        </reference>
+        <reference name="content">
+            <block type="trezo_cielo/transaction" name="cielo.transaction" template="trezo/cielo/info/transaction.phtml"/>
+        </reference>
+    </adminhtml_cielo_index>
+</layout>

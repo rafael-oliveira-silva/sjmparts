@@ -1,0 +1,15 @@
+<?php
+/**
+ * DDE_Client extension for Magento
+ *
+ * @category   DDE
+ * @package    DDE_Cliente
+ * @version    1.1.0
+ */
+?>
+<div class="field rgie">
+	<label for="<?php echo $this->getFieldId('rgie')?>" class="required"><em>*</em><?php if($this->getTipo() == 2): ?><?php echo $this->__('IE') ?><?php else: ?><?php echo $this->__('RG') ?><?php endif ?></label>
+	<div class="input-box">
+	    <input type="text" id="<?php echo $this->getFieldId('rgie')?>" name="<?php echo $this->getFieldName('rgie')?>" value="<?php echo $this->escapeHtml($this->getRgie()) ?>" title="<?php if($this->getTipo() == 2): ?><?php echo $this->__('IE') ?><?php else: ?><?php echo $this->__('RG') ?><?php endif ?>" class="input-text required-entry" <?php echo $this->getFieldParams() ?> />
+	</div>
+</div>

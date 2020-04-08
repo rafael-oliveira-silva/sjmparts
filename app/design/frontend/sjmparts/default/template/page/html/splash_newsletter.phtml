@@ -1,0 +1,60 @@
+<?php
+	date_default_timezone_set('America/Sao_Paulo');
+	$session = Mage::getSingleton('core/session');
+?>
+
+<?php if(isset($_GET['registered']) && $_GET['registered'] == 1): ?>
+	<?php
+		/*$_date = new DateTime(date('Y-m-d H:i:s'));
+		$_add = 24 - $_date->format('H');
+		$_date->add(new DateInterval('PT'.$_add.'H'));
+		setcookie('splash_screen', 'TRUE', $_date->format('U'));*/
+
+		$session->setShowSplashScreen(FALSE);
+	?>
+<?php endif ?>
+
+<?php //if( FALSE ): ?>
+<?php //if( $session->getShowSplashScreen() !== FALSE && (!isset($_GET['registered']) || $_GET['registered'] != 1) ): ?>
+	<div class="canvas black"></div>
+	<div id="splash-newsletter">
+		<a href="#" class="close">X</a>
+		<div class="img"></div>
+		<div class="info">
+			<p class="text">Receba nossas novidades</p>
+			<?php echo $this->getLayout()->createBlock('newsletter/subscribe')->setTemplate('newsletter/splash.phtml')->toHtml() ?>
+		</div>
+		<script type="text/javascript">
+			jQuery('document').ready(function(){
+				var obj = jQuery('#splash-newsletter');
+
+				var w = jQuery(window).width();
+				var h = jQuery(window).height();
+				var objW = obj.width();
+				var objH = obj.height();
+
+				var left = (parseFloat(w) - parseFloat(objW))/2;
+				var top = (parseFloat(h) - parseFloat(objH))/2;
+
+				obj.css('left',left+'px').css('top',top+'px');
+
+				return;
+			});
+
+			jQuery('body,html').on('click','#splash-newsletter .close, .canvas', function(e){
+				e.preventDefault();
+
+				jQuery('#splash-newsletter').fadeOut({duration: 350, complete: function(){jQuery('#splash-newsletter').remove();}});
+				jQuery('.canvas').fadeOut({duration: 350, complete: function(){jQuery('.canvas').remove();}});
+			});
+		</script>
+	</div>
+	<?php
+		/*$_date = new DateTime(date('Y-m-d H:i:s'));
+		$_add = 24 - $_date->format('H');
+		$_date->add(new DateInterval('PT'.$_add.'H'));
+		setcookie('splash_screen', 'TRUE', $_date->format('U'));*/
+
+		$session->setShowSplashScreen(FALSE);
+	?>
+<?php //endif ?>

@@ -1,0 +1,11 @@
+<?php
+$store_id = Mage::app()->getStore()->getId();
+
+$trustvox_id = Mage::helper('hibridotrustvox')->getTrustvoxId($store_id);
+$titulo = Mage::helper('hibridotrustvox')->getWidgetTitle($store_id);
+$position = Mage::helper('hibridotrustvox')->getWidgetPosition($store_id);
+
+if($position == 'padrao'){
+    echo $this->getLayout()->createBlock('core/template')->setTemplate('hibrido/widget_trustvox.phtml')->tohtml();
+}
+?>

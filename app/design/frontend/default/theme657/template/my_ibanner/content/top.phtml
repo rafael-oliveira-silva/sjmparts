@@ -1,0 +1,39 @@
+<div class="clear"></div>
+<script src="<?php echo $this->getSkinUrl('js/camera.js') ?>"> </script>
+<script>
+	jQuery(function(){
+		jQuery('#camera_wrap').camera({
+			alignmen: 'topCenter',
+			height: '26.04%',
+			minHeight: '100px',
+			loader : false,
+			navigation: true,
+			fx: 'simpleFade',
+			navigationHover:false,       
+			thumbnails: false,
+			playPause: false,
+			pagination:false
+		});
+	});
+</script>
+<?php $banner = $this->getBanner(); ?>
+<?php if (is_object($banner)) : ?>
+    <?php $_helper = $this->helper('ibanner') ?>
+	<?php $_imageList = $banner->getImageList(); ?>
+    <?php if (is_array($_imageList) and sizeof($_imageList) > 0) : ?>
+		<div class="fluid_container_wrap hidden-xs">
+			<div class="fluid_container">
+				<div class="camera_wrap camera_orange_skin" id="camera_wrap">
+					<?php foreach ($_imageList as &$_item) : ?>
+						<?php if ($_helper->getAutoResize()) : ?>
+							<div data-src="<?php echo $this->helper('ibanner/image')->init($_item['file'])->resize($_helper->getWidth(), $_helper->getHeight()) ?>" data-link="<?php echo $_item['label']; ?>"/></div>
+						<?php else : ?>
+							<div data-src="<?php echo $_helper->getImageUrl($_item['file']) ?>" data-link="<?php echo $_item['label']; ?>"/></div>
+						<?php endif; ?>
+					<?php endforeach; ?>
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	<?php endif ?>
+<?php endif ?>

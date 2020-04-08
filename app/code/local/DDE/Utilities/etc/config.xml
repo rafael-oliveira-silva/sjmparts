@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <DDE_Utilities>
+            <version>1.0.0</version>
+        </DDE_Utilities>
+    </modules>
+    <global>
+        <helpers>
+            <utilities>
+                <class>DDE_Utilities_Helper</class>
+            </utilities>
+        </helpers>
+        <models>
+            <utilities>
+                <class>DDE_Utilities_Model</class>
+                <resourceModel>utilities_mysql4</resourceModel>
+            </utilities>
+        </models>
+    </global>
+    <crontab>
+        <jobs>
+            <utilities_changeorderstatus>
+                <schedule>
+                    <cron_expr>*/15 * * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>utilities/cron::changeOrderStatus</model>
+                </run>
+            </utilities_changeorderstatus>
+        </jobs>
+    </crontab>
+</config> 

@@ -1,0 +1,42 @@
+<?php
+$_product = Mage::registry('current_product');
+
+$store_id = Mage::app()->getStore()->getId();
+$trustvoxId = Mage::helper('hibridotrustvox')->getTrustvoxId($store_id);
+$title = Mage::helper('hibridotrustvox')->getWidgetTitle($store_id);
+
+$extra = [];
+$campos_extra = explode(',', Mage::helper('hibridotrustvox')->getCamposExtra($store_id));
+foreach ($campos_extra as $campo) {
+    if($campo != ''){
+        $data = $_product->getData($campo);
+        if($data && $data != ''){
+            $extra[$campo] = $data;
+        }
+    }
+}
+$extra = (count($extra)) ? json_encode($extra) : '{}';
+?>
+
+<div class='_trustvox_widget_container'>
+    <div class='container_titulo_trustvox' id='trustvox-reviews'><h1><?php echo $title;?></h1></div>
+    <div id='_trustvox_widget'></div>
+</div>
+
+<script type='text/javascript'>
+var _trustvox = _trustvox || [];
+_trustvox.push(['_storeId', "<?php echo $trustvoxId;?>"]);
+
+_trustvox.push(['_productId',  "<?php echo $_product->getId();?>"]);
+_trustvox.push(['_productName','<?php echo addslashes($_product->getName());?>']);
+_trustvox.push(['_productPhotos', ["<?php echo $_product->getImageUrl();?>"]]);
+
+var extra = JSON.parse('<?php echo $extra;?>');
+_trustvox.push(['_productExtraAttributes', extra]);
+
+(function() {
+    var tv = document.createElement('script'); tv.type = 'text/javascript'; tv.async = true;
+    tv.src = '//static.trustvox.com.br/trustvox.min.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(tv, s);
+})();
+</script>

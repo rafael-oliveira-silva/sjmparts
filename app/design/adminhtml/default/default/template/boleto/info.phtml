@@ -1,0 +1,26 @@
+<?php // ini_set('display_errors', true)?>
+<?php
+	$order   = $this->getOrder();
+?>
+<?php if(!empty($order)) : ?>
+	<?php $payment = $order->getPayment() ?>
+	<?php 
+		// Zend_Debug::dump($order->getEntityId());
+		// $lastOrderId = Mage::getSingleton('checkout/session')->getLastRealOrderId();
+		// $orderId = Mage::getModel('sales/order')->loadByIncrementId($lastOrderId)->getEntityId();
+		// $orderIncrementId = (int)$this->getRequest()->getParam('order_increment_id');
+		// $order = Mage::getModel('sales/order')->loadByIncrementId($orderIncrementId);
+		// $order->getEntityId()
+		// $orderId = Mage::getModel("sales/order")->getCollection()->getLastItem()->getIncrementId();
+		$orderId = $order->getIncrementId();
+		$viewType = Mage::app()->getStore()->isAdmin() ? 'adminView' : 'view';
+	?>
+	<h5><?php echo $payment->getMethodInstance()->getTitle() ?></h5>
+	<?php 
+		if($payment->getMethod() == 'boleto_itau' || $payment->getMethod() == 'boleto_bb') { 
+			echo "<a href=\"".$this->getUrl('boleto/standard/'.$viewType.'/order_increment_id/'.$orderId)."\" class=\"link-cart\" onclick=\"this.target='_blank'\">".$this->__('Imprimir Boleto')."</a>";
+		}else{
+			echo "<a href=\"".$this->getUrl('boleto/standard/'.$viewType.'/order_id/'.$order->getId())."\" class=\"link-cart\" onclick=\"this.target='_blank'\">".$this->__('Imprimir Boleto')."</a>";
+		}
+	?>
+<?php endif ?>

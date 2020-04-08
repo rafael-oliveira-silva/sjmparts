@@ -1,0 +1,328 @@
+<?xml version="1.0"?>
+<config>
+  
+    <tabs>
+        <cmsmart module="cmsmquickview">
+            <label>CsmMart Extensions</label>
+            <sort_order>100</sort_order>
+        </cmsmart>
+    </tabs>
+	
+    <sections>
+        <quickview translate="label" module="cmsmquickview">
+            <class>separator-top</class>
+            <label>Quick View</label>
+            <tab>cmsmart</tab>
+            <sort_order>10</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <viewsetting translate="label" module="cmsmquickview">
+                    <label>Quick View Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+					
+						<enableview translate="label">
+                            <label>Enable QuickView</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enableview>
+						
+						<usejquery translate="label">
+                            <label>Use jQuery</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </usejquery>
+						
+						<enableaddtocart translate="label">
+                            <label>Enable Add To Cart</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enableaddtocart>
+						
+						<enabledetail translate="label">
+                            <label>Enable Detail Tab</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabledetail>
+						
+						<enablereview translate="label">
+                            <label>Enable Reviews Tab</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enablereview>
+						
+						<enablefooter translate="label">
+                            <label>Enable Footer</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enablefooter>
+						
+                        <quickview_width translate="label">
+                            <label>Quick View Width</label>
+                            <frontend_type>text</frontend_type>
+							<comment>Default as 800px</comment>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </quickview_width>                  
+						
+						<quickview_height translate="label">
+                            <label>Quick View Height</label>
+                            <frontend_type>text</frontend_type>
+							<comment>Default as 500px</comment>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </quickview_height>                  
+						
+                        <background_color translate="label">
+                            <label>Background Color</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>
+								Default as #FFFFFF
+								<![CDATA[<script>
+									jQuery.noConflict();
+									jQuery('#quickview_viewsetting_background_color').ColorPicker({
+										onSubmit: function(hsb, hex, rgb, el) {
+											jQuery(el).val(hex);
+											jQuery(el).ColorPickerHide();
+										},
+										onBeforeShow: function () {
+											jQuery(this).ColorPickerSetColor(this.value);
+										}
+									})
+									.bind('keyup', function(){
+										jQuery(this).ColorPickerSetColor(this.value);
+									});										
+								</script>]]>
+							</comment>
+                        </background_color>
+												
+                        <border_color translate="label">
+                            <label>Quick View Border Color</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>
+								Default as #555555
+								<![CDATA[<script>
+									jQuery.noConflict();
+									jQuery('#quickview_viewsetting_border_color').ColorPicker({
+										onSubmit: function(hsb, hex, rgb, el) {
+											jQuery(el).val(hex);
+											jQuery(el).ColorPickerHide();
+										},
+										onBeforeShow: function () {
+											jQuery(this).ColorPickerSetColor(this.value);
+										}
+									})
+									.bind('keyup', function(){
+										jQuery(this).ColorPickerSetColor(this.value);
+									});										
+								</script>]]>
+							</comment>
+                        </border_color>
+
+						<loading_icon translate="label comment">
+							<label>Loading</label>
+							<frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">cmsmart/quickview</upload_dir> 
+                            <base_url type="media" scope_info="1">cmsmart/quickview</base_url>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</loading_icon>	
+						
+						<position translate="label">
+							<label>Position</label>
+                            <frontend_type>text</frontend_type>
+							<comment>Default is auto and Postion in center. [top right button left]</comment>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</position>
+						
+						<opacity translate="label">
+                            <label>Opacity</label>
+                            <frontend_type>text</frontend_type>
+							<comment>Default as 0.85. Max as 1</comment>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </opacity>
+						
+						<footerblockid translate="label">
+                            <label>Footer Static Block Id</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </footerblockid>
+						
+						<qvshowoption translate="label">
+                            <label>Enable Show Options</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </qvshowoption>
+																
+                    </fields>
+                </viewsetting>
+				
+                <buttonsetting translate="label" module="cmsmquickview">
+                    <label>Quick View Button Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>						
+						<block_class translate="label">
+                            <label>Block Class Name</label>
+                            <frontend_type>text</frontend_type>
+							<comment>Default as .products-grid .item . Suport input type: class a, class b, class c,...</comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </block_class>							
+						<aclass translate="label">
+                            <label>a Class</label>
+                            <frontend_type>text</frontend_type>
+							<comment>Default as a.product-image . Suport input type: class a, class b, class c,...</comment>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </aclass>		
+						
+						<imgclass  translate="label">
+                            <label>Image Class</label>
+                            <frontend_type>text</frontend_type>						
+							<comment>Default as .product-image img . Suport input type: class a, class b, class c,...</comment>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </imgclass>							
+												
+						<button_label translate="label">
+                            <label>Quick View Button Label</label>
+                            <frontend_type>text</frontend_type>
+							<comment>Default as Quick View</comment>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </button_label>  
+						
+                    </fields>
+				</buttonsetting>
+				
+                <imagesetting translate="label" module="cmsmquickview">
+                    <label>Image Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>						
+						<product_image_width translate="label">
+                            <label>Product Image Width</label>
+                            <frontend_type>text</frontend_type>
+							<comment>Default as 300px</comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_image_width>							
+						<product_image_height translate="label">
+                            <label>Product Image Height</label>
+                            <frontend_type>text</frontend_type>
+							<comment>Default as 300px</comment>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_image_height>							
+						<thumbnail_image_width translate="label">
+                            <label>Thumbnail Image Width</label>
+                            <frontend_type>text</frontend_type>						
+							<comment>Default as 60px</comment>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </thumbnail_image_width>							
+						<thumbnail_image_height translate="label">
+                            <label>Thumbnail Image Height</label>
+                            <frontend_type>text</frontend_type>
+							<comment>Default as 60px</comment>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </thumbnail_image_height>	
+								
+						<enablezoom translate="label">
+                            <label>Enable Zoom Images</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enablezoom>						
+                    </fields>
+				</imagesetting>
+				
+            </groups>
+        </quickview>
+    </sections>
+</config>

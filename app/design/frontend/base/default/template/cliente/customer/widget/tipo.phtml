@@ -1,0 +1,15 @@
+<?php
+/**
+ * DDE_Cliente extension for Magento
+ *
+ * @category   DDE
+ * @package    DDE_Cliente
+ * @version    1.1.0
+ */
+?>
+<div class="field tipo">
+	<div class="input-box">
+		<input type="radio" name="<?php echo $this->getFieldName('tipo')?>" value="1" id="pf" class="radio" <?php if($this->getTipo() != 2): ?>checked<?php endif ?> /> <label for="pf"><?php echo $this->__('Pessoa física') ?></label>
+		<input type="radio" name="<?php echo $this->getFieldName('tipo')?>" value="2" id="pj" class="radio" <?php if($this->getTipo() == 2): ?>checked<?php endif ?> /> <label for="pj"><?php echo $this->__('Pessoa jurídica') ?></label>
+	</div>
+</div>

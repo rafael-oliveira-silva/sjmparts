@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * DDE_Cliente extension for Magento
+ *
+ * @category   DDE
+ * @package    DDE_Cliente
+ * @version    1.1.0
+ */
+-->
+<layout version="0.1.0">
+	<customer_account_create>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>cliente/css/cliente.css</name></action>
+            <action method="addItem"><type>skin_js</type><name>cliente/js/jquery-1.7.2.min.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>cliente/js/jquery.noconflict.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>cliente/js/jquery.maskedinput-1.3.min.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>cliente/js/cliente.js</name></action>
+        </reference>
+        <reference name="customer_form_register">
+            <action method="setTemplate"><template>cliente/persistent/customer/form/register.phtml</template></action>
+        </reference>
+    </customer_account_create>
+	<customer_account_edit>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>cliente/css/cliente.css</name></action>
+            <action method="addItem"><type>skin_js</type><name>cliente/js/jquery-1.7.2.min.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>cliente/js/jquery.noconflict.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>cliente/js/jquery.maskedinput-1.3.min.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>cliente/js/cliente.js</name></action>
+        </reference>		
+		<reference name="customer_edit">
+			<action method="setTemplate"><template>cliente/customer/form/edit.phtml</template></action>		
+		</reference>		
+	</customer_account_edit>
+	<customer_address_form>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>cliente/css/cliente.css</name></action>
+            <action method="addItem"><type>skin_js</type><name>cliente/js/jquery-1.7.2.min.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>cliente/js/jquery.noconflict.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>cliente/js/jquery.maskedinput-1.3.min.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>cliente/js/cliente.js</name></action>
+        </reference>		
+		<reference name="customer_address_edit">
+			<action method="setTemplate"><template>cliente/customer/address/edit.phtml</template></action>		
+		</reference>		
+	</customer_address_form>
+	<customer_account_index>
+		<reference name="customer_account_dashboard">
+			<remove name="customer_account_dashboard_hello" />
+	        <block type="cliente/customer_account_dashboard_hello" name="cliente_customer_account_dashboard_hello" as="hello" template="customer/account/dashboard/hello.phtml"/>
+		</reference>
+		<reference name="customer_account_dashboard_info">
+			<action method="setTemplate"><template>cliente/customer/account/dashboard/info.phtml</template></action>					
+		</reference>
+	</customer_account_index>
+	<checkout_onepage_index>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>cliente/css/cliente.css</name></action>
+            <action method="addItem"><type>skin_js</type><name>cliente/js/jquery-1.7.2.min.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>cliente/js/jquery.noconflict.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>cliente/js/jquery.maskedinput-1.3.min.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>cliente/js/cliente.js</name></action>
+        </reference>
+		<reference name="checkout.onepage.billing">
+			<action method="setTemplate"><template>cliente/persistent/checkout/onepage/billing.phtml</template></action>
+		</reference>
+        <reference name="checkout.onepage.shipping">
+			<action method="setTemplate"><template>cliente/persistent/checkout/onepage/shipping.phtml</template></action>			
+		</reference>
+	</checkout_onepage_index>
+</layout>

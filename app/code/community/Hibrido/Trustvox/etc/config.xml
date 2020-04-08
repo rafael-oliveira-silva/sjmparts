@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Hibrido_Trustvox>
+            <version>2.0.5</version>
+        </Hibrido_Trustvox>
+    </modules>
+
+    <global>
+        <models>
+            <hibridotrustvox>
+                <class>Hibrido_Trustvox_Model</class>
+            </hibridotrustvox>
+        </models>
+        <helpers>
+            <hibridotrustvox>
+                <class>Hibrido_Trustvox_Helper</class>
+            </hibridotrustvox>
+        </helpers>
+        <blocks>
+            <hibridotrustvox>
+                <class>Hibrido_Trustvox_Block</class>
+            </hibridotrustvox>
+        </blocks>
+
+        <events>
+            <sales_order_save_after>
+                <observers>
+                    <hibridotrustvox>
+                        <type>singleton</type>
+                        <class>Hibrido_Trustvox_Model_Observer</class>
+                        <method>saveOrder</method>
+                    </hibridotrustvox>
+                </observers>
+            </sales_order_save_after>
+        </events>
+    </global>
+
+    <frontend>
+        <layout>
+            <updates>
+                <hibridotrustvox>
+                    <file>hibrido/trustvox/trustvox.xml</file>
+                </hibridotrustvox>
+            </updates>
+        </layout>
+
+        <routers>
+            <test>
+                <use>standard</use>
+                <args>
+                    <module>Hibrido_Trustvox</module>
+                    <frontName>trustvox</frontName>
+                </args>
+            </test>
+        </routers>
+    </frontend>
+
+</config>

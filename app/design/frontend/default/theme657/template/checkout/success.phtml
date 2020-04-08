@@ -1,0 +1,90 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+
+<?php
+$__order = Mage::getModel('sales/order')->loadByIncrementId($this->getOrderId());
+$totall = $__order->getGrandTotal();
+?>
+<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/1037286862/?value=<?php echo $totall;?>&amp;currency_code=BRL&amp;label=JvK_COeez1wQzvvO7gM&amp;guid=ON&amp;script=0"/>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
+
+<div class="page-title">
+    <h1><?php echo $this->__('Your order has been received.') ?></h1>
+</div>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<h2 class="sub-title"><?php echo $this->__('Thank you for your purchase!') ?></h2>
+
+<?php if ($this->getOrderId()):?>
+	<?php
+		$order = Mage::getModel('sales/order');
+		$order->loadByIncrementId($this->getOrderId());
+		$method = $order->getPayment()->getMethod();
+	?>
+		<?php if( strpos($method, 'banktransfer') !== false ): ?>
+			<p><?php echo $this->__('Congratulation! Your budget request was created successfully!') ?></p>
+		<?php elseif ($this->getCanViewOrder()) :?>
+			<p><?php echo $this->__('Your order # is: %s.', sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getViewOrderUrl()), $this->escapeHtml($this->getOrderId()))) ?></p>
+		<?php  else :?>
+			<p><?php echo $this->__('Your order # is: %s.', $this->escapeHtml($this->getOrderId())) ?></p>
+		<?php endif;?>
+		<p><?php echo $this->__('You will receive an order confirmation email with details of your order and a link to track its progress.') ?> <br/>Seu pedido está em ANÁLISE e assim que aprovado (em até 3 dias úteis) você será informado sobre o status da sua compra.</p>
+
+		<!-- Start Cushy_Boleto code -->
+		<?php if (strpos($method, 'boleto_') !== false): ?>
+			<br /><br />
+			<div>
+			<a href="<?php echo $this->getUrl('boleto/standard/view/order_id/' . $order->getId()) ?>" target="_blank">
+				<img src="<?php echo $this->getSkinUrl('images/boleto.png') ?>" style="vertical-align: middle; margin-right: 6px;" /> <?php echo $this->__('Clique aqui para imprimir o boleto bancário.') ?>
+			</a>
+			</div>
+		<!-- Finish Cushy_Boleto code -->	
+		<?php elseif( strpos($method, 'banktransfer') !== false ): ?>
+			
+		<?php else: ?>
+			<br />
+			<div class="">
+				<h4><?php echo $this->__('Payment Method') ?></h4>
+			</div>		
+			<?php
+			$orderId = Mage::getSingleton('checkout/session')->getLastOrderId();
+			$order = Mage::getModel('sales/order')->load($orderId);
+			echo $this->helper('payment')->getInfoBlock($order->getPayment())->toHtml()
+			?>		
+		<?php endif ?>
+<?php endif ?>
+<br />
+<a href="https://www.ebitempresa.com.br/bitrate/pesquisa1.asp?empresa=1133095" target="_blank">
+	<img border="0" class="img-responsive" name="banner" src="https://www.ebitempresa.com.br/bitrate/banners/b1133095.gif" alt="O que você achou desta loja?" width="468" height="60" style="width: auto !important;">
+</a>
+<br />
+<div class="buttons-set">
+	<button type="button" class="button" onclick="window.location='<?php echo Mage::getBaseUrl() ?>'">
+		<span>
+			<span>Retornar ao site</span>
+		</span>
+	</button>
+</div>

@@ -1,0 +1,25 @@
+.banner-creator-container{ background: url(bg_pattern.jpg) center center; }
+.banner-creator-container .swiper-container{ height: 437px; }
+.banner-creator-container .main-content-container{ width: 76%; display: inline-block; position: relative; padding: 15px 0; height: 100%; }
+.banner-creator-container .main-image-container{ transition: 2s all; }
+.banner-creator-container .main-image-container-left{ position: absolute; left: 0; width: 38%; /*right: 62%;*/ bottom: 15px; top: 15px; }
+.banner-creator-container .main-image-container-right{ position: absolute; right: 0; width: 38%; /*left: 62%;*/ bottom: 15px; top: 15px; }
+.banner-creator-container .main-image-container img{ display: inline-block; }
+.banner-creator-container .text-container-right{ position: absolute; right: 0; width: 62%; /*left: 38%;*/ bottom: 15px; top: 15px; }
+.banner-creator-container .text-container-left{ position: absolute; left: 0; width: 62%; /*right: 38%;*/ bottom: 15px; top: 15px; }
+.banner-creator-container .text-container{ transition: 2s all; }
+.banner-creator-container .text-container p{ line-height: normal; }
+
+.banner-creator-container .swiper-slide{ overflow: hidden; }
+.banner-creator-container .swiper-slide .main-image-container-left{ left: -150%; }
+.banner-creator-container .swiper-slide .main-image-container-right{ right: -150%; }
+.banner-creator-container .swiper-slide.swiper-slide-active .main-image-container-left{ left: 0; }
+.banner-creator-container .swiper-slide.swiper-slide-active .main-image-container-right{ right: 0; }
+
+.banner-creator-container .swiper-slide .text-container-left{ left: -250%; }
+.banner-creator-container .swiper-slide .text-container-right{ right: -250%; }
+.banner-creator-container .swiper-slide.swiper-slide-active .text-container-left{ left: 0; }
+.banner-creator-container .swiper-slide.swiper-slide-active .text-container-right{ right: 0; }
+
+.swiper-button-next, .swiper-container-rtl .swiper-button-prev{ right: 15px; width: 50px; height: 100px; background-size: 100% auto; top: 38%; margin-top: 0; background-image: url(prev.png); }
+.swiper-button-prev, .swiper-container-rtl .swiper-button-next{ left: 15px; width: 50px; height: 100px; background-size: 100% auto; top: 38%; margin-top: 0; background-image: url(next.png); }

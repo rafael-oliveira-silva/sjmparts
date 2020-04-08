@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * Trezo Stone Payment Method
+ *
+ * @category   Trezo
+ * @package    Trezo_Itaushopline
+ * @author     André Felipe <contato@trezo.com.br>
+ *
+ */
+?>
+
+<?php if ($this->canShowBoleto()) : ?>
+    <div class="itaushopline-boleto-print">
+        <p>
+            <button onclick="window.open('<?php echo $this->getBoletoUrl() ?>')" title="Imprimir boleto" class="button" type="button">
+                <span><span>Clique aqui para imprimir o boleto</span></span>
+            </button>
+        </p>
+    </div>
+<?php endif; ?>

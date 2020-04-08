@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <DDE_Juridico>
+      <version>0.1.0</version>
+    </DDE_Juridico>
+  </modules>
+  <frontend>
+    <routers>
+      <juridico>
+        <use>standard</use>
+          <args>
+            <module>DDE_Juridico</module>
+            <frontName>juridico</frontName>
+          </args>
+      </juridico>
+    </routers>
+  </frontend>
+  <global>
+		<rewrite>        
+            <dde_juridico_customer_accountcontroller>
+                <from><![CDATA[#^/customer/account/#]]></from> <!-- Mage_Customer_AccountController  -->
+                <to>/juridico/customer_account/</to> <!-- DDE_Juridico_Customer_AccountController  -->
+            </dde_juridico_customer_accountcontroller>
+		</rewrite>
+    <helpers>
+      <juridico>
+        <class>DDE_Juridico_Helper</class>
+      </juridico>
+    </helpers>
+  </global>
+  <admin>
+	<routers>
+	  <juridico>
+	    <use>admin</use>
+		<args>
+		  <module>DDE_Juridico</module>
+		  <frontName>admin_juridico</frontName>
+		</args>
+	  </juridico>
+	</routers>
+  </admin>
+</config> 

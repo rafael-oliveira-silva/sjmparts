@@ -1,0 +1,385 @@
+<?xml version="1.0"?>
+<config>
+   <sections>
+        <payment>
+            <groups>
+                <cielo_general translate="label">
+                    <label>Cielo General Configurations</label>
+                    <sort_order>1000</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <environment translate="label">
+                            <label>Environment</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>Trezo_Cielo_Model_Source_Environment</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Development: test environment Production: production environment]]></comment>
+                        </environment>
+                        <merchant_key translate="label">
+                            <label>Merchant Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Cielo merchant key.]]></comment>
+                        </merchant_key>
+                        <merchant_id translate="label">
+                            <label>Merchant Id</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Cielo merchant Id.]]></comment>
+                        </merchant_id>
+                        <log translate="label">
+                            <label>Generate Log</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>35</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Enable or disable log of request and response on cielo.log file.]]></comment>
+                        </log>
+                        <anti_fraud translate="label">
+                            <label>Anti Fraud</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Enable or disable Cielo Anti Fraud.]]></comment>
+                        </anti_fraud>
+                        <street>
+                            <label>Street</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>trezo_cielo/source_address</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Mapping address' fields.]]></comment>
+                        </street>
+                        <number>
+                            <label>Number</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>trezo_cielo/source_address</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Mapping address' fields.]]></comment>
+                        </number>
+                        <complement>
+                            <label>Complement</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>trezo_cielo/source_address</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Mapping address' fields.]]></comment>
+                        </complement>
+                        <district>
+                            <label>District</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>trezo_cielo/source_address</source_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Mapping address' fields.]]></comment>
+                        </district>
+                        <document_number>
+                            <label>Document Number</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>trezo_cielo/source_customerAttribute</source_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Mapping customer's fields.]]></comment>
+                        </document_number>
+                        <home_phone>
+                            <label>Home Phone</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>trezo_cielo/source_address</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Mapping customer's fields.]]></comment>
+                        </home_phone>
+                        <mobile_phone>
+                            <label>Mobile Phone</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>trezo_cielo/source_address</source_model>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Mapping customer's fields.]]></comment>
+                        </mobile_phone>
+                        <work_phone>
+                            <label>Work Phone</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>trezo_cielo/source_address</source_model>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Mapping customer's fields.]]></comment>
+                        </work_phone>
+                    </fields>
+                </cielo_general>
+                <cielo_cc translate="label">
+                    <label>Cielo Credit Card</label>
+                    <sort_order>1001</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Enable or disable Cielo Credit Card on checkout.]]></comment>
+                        </active>
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Payment method title to show on checkout page.]]></comment>
+                        </title>
+                        <cctypes translate="label">
+                            <label>Card Brands</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>Trezo_Cielo_Model_Source_Cctypes</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Choose allowed credit card brands.]]></comment>
+                        </cctypes>
+                        <soft_descriptor translate="label">
+                            <label>Soft Descriptor</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>35</sort_order>
+                            <validate>validate-length maximum-length-13</validate>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Choose the name showed on credit card bill. Only 13 character.]]></comment>
+                        </soft_descriptor>
+                        <max_installments translate="label">
+                            <label>Maximun Installments</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_class>validate-number</frontend_class>
+                            <comment><![CDATA[The maximun number of installments.]]></comment>
+                        </max_installments>
+                        <min_installment_value translate="label">
+                            <label>Minimun Installments Value</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_class>validate-number</frontend_class>
+                            <comment><![CDATA[The minimun installments value for each installment.]]></comment>
+                        </min_installment_value>
+                         <installment_interest_1 translate="label">
+                            <label>Interest For 1x Value</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>51</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_class>validate-number</frontend_class>
+                        </installment_interest_1>
+                        <installment_interest_2 translate="label">
+                            <label>Interest For 2x to 6x Value</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>52</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_class>validate-number</frontend_class>
+                        </installment_interest_2>
+                        <installment_interest_3 translate="label">
+                            <label>Interest For 7x to 12x Value</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>53</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_class>validate-number</frontend_class>
+                        </installment_interest_3>
+                        <payment_action translate="label">
+                            <label>Operation</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>trezo_cielo/source_paymentAction</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Authorize: You'll need to invoice orther manually. Capture: Order will update the status by Cielo Notification or Credit Card acceptance automatically]]></comment>
+                        </payment_action>
+                        <validate translate="label">
+                            <label>Validate Payment</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Execute validation. Set [NO] for onestepcheckout.]]></comment>
+                        </validate>
+                        <sort_order translate="label">
+                            <label>Sort Order</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_class>validate-number</frontend_class>
+                        </sort_order>
+                    </fields>
+                </cielo_cc>
+
+                <cielo_dc translate="label">
+                    <label>Cielo Debit Card</label>
+                    <sort_order>1002</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Enable or disable Cielo Debit Card on checkout.]]></comment>
+                        </active>
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </title>
+                        <soft_descriptor translate="label">
+                            <label>Soft Descriptor</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>11</sort_order>
+                            <validate>validate-length maximum-length-13</validate>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Choose the name showed on debit card bill. Only 13 character.]]></comment>
+                        </soft_descriptor>
+                        <dctypes translate="label">
+                            <label>Card Brands</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>Trezo_Cielo_Model_Source_Dctypes</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Choose allowed debit card brands.]]></comment>
+                        </dctypes>
+                    </fields>
+                </cielo_dc>
+
+                <cielo_boleto translate="label">
+                    <label>Cielo Boleto</label>
+                    <sort_order>1003</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Enable or disable Cielo Boleto on checkout.]]></comment>
+                        </active>
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Payment method title to show on checkout page.]]></comment>
+                        </title>
+                        <days_to_expiration translate="label">
+                            <label>Expiration Days</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_class>validate-number</frontend_class>
+                            <comment><![CDATA[Boleto additional expiration in days.]]></comment>
+                        </days_to_expiration>
+                        <provider translate="label">
+                            <label>Provider</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>trezo_cielo/source_bankProvider</source_model>
+                            <sort_order>35</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA["Simulado" options is used to test billet]]></comment>
+                        </provider>
+                        <instructions translate="label">
+                            <label>Instructions</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Slip instructions to show on checkout page.]]></comment>
+                        </instructions>
+                        <sort_order translate="label">
+                            <label>Sort Order</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_class>validate-number</frontend_class>
+                        </sort_order>
+                    </fields>
+                </cielo_boleto>
+            </groups>
+        </payment>
+    </sections>
+</config>

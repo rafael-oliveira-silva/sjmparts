@@ -1,0 +1,278 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php if(Mage::getSingleton('cms/page')->getIdentifier() == 'home'  && Mage::app()->getFrontController()->getRequest()->getRouteName() == 'cms' ) :  ?>
+       <?php //echo ($this->getLayout()->createBlock('cms/block')->setBlockId('block-row-3')->toHtml()); ?>
+       <?php echo $this->getChildHtml('aw_blog_footer') ?>
+       <?php echo ($this->getLayout()->createBlock('cms/block')->setBlockId('block-row-4')->toHtml()); ?>
+<?php endif;  ?>
+<div class="footer-container">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="footer">
+					<p id="back-top"><a href="#top"><span></span></a> </p>
+					<div class="footer-cols-wrapper">
+						<?php echo $this->getChildHtml('cms_footer_links') ?>
+						<div class="footer-col footer-col-ex">
+							<h4>Certificados</h4>
+							<div class="footer-col-content">
+								<?php echo $this->getChildHtml('certificados_footer') ?>
+								<div class="certificado-block first ebit" style="float: left; width: 50%;">
+									<a id="seloEbit" href="http://www.ebit.com.br/#miltfort" target="_blank" onclick="redir(this.href);" style="float: left;">Avaliação de Lojas e-bit</a>
+									<script type="text/javascript" id="getSelo" src="https://a248.e.akamai.net/f/248/52872/0s/img.ebit.com.br/ebitBR/selo-ebit/js/getSelo.js?13309" defer="defer" async=""></script>
+								</div>
+                                <?php /*
+								<div class="certificado-block comodo" id="sslblindado">
+									<div id="armored_website" style="float: right;">
+										<param id="aw_preload" value="true" />
+									</div>
+									<script type="text/javascript" src="//selo.siteblindado.com/aw.js"></script>
+								</div>
+                                */
+                                ?>
+								<div class="certificado-block" style="float: right; width: 50%;">
+                                    <div id="sslblindado">
+                                        <param id="sslblindado_preload" value="true"/>
+                                    </div>
+                                    <script type="text/javascript" src="//selo.siteblindado.com/sslblindado.js"></script>
+								</div>
+                                <div style="float: right; width: 48%; margin: 50px 0px 0px;">
+                                    <img src="<?php echo $this->getSkinUrl('images/letsencrypt_selo.png') ?>" />
+                                </div>
+                                <div class="certificado-block clearsale last" style="float: left; width: 50%; margin: 10px 0px 0px 00px;">
+                                    <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) ?>wysiwyg/footer/selo_clearsale.png" alt="" />
+                                </div>
+                                <div id="trustvox-selo-site-sincero" class="ts-modal-trigger" style="cursor:pointer;">
+                                    <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) ?>wysiwyg/footer/trustvox-selo-site-sincero-pequeno-x2.png" />
+                                </div>
+                                <script type="text/javascript">
+                                	jQuery('body').on('load', function(){
+	                                  var _trustvox_certificate = _trustvox_certificate || [];
+	                                  _trustvox_certificate.push(['_certificateId', 'sjm-parts']);
+	                                  (function() {
+	                                    var tv = document.createElement('script'); tv.type = 'text/javascript'; tv.async = true;
+	                                    tv.src = '//s3-sa-east-1.amazonaws.com/trustvox-certificate-modal-js/widget.js';
+	                                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(tv, s);
+	                                  })();
+                                	});
+                                </script>
+							</div>
+							<div class="clear"></div>
+							<h4>Formas de pagamento</h4>
+							<h5>(Válido para loja online)</h5>
+							<div class="footer-col-content">
+								<div class="payment-methods">
+									<p><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) ?>wysiwyg/footer/formaspagamento.jpg" alt="" /></p>
+								</div>
+							</div>
+						</div>
+						<div class="footer-col last">
+							<h4>Curta nossa fanpage</h4>
+							<div class="like-box"><div class="fb-like-box" data-href="https://www.facebook.com/pages/Miltfort-e-SJM-Parts/310287639027436" data-width="210" data-height="373" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div></div>
+							<div class="clear"></div>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="hidden-xs col-md-8">
+				<address><?php echo $this->getCopyright() ?>
+                    | Desenvolvimento <a href="http://www.18digital.com.br" target="_blank" style="text-decoration: underline; color: #777; margin-right: 2%;">18digital</a>
+                </address>
+			</div>
+			<div class="hidden-xs col-md-4 text-right">
+<!--				<address>Desenvolvimento <a href="http://www.18digital.com.br" target="_blank" style="text-decoration: underline; color: #777; margin-right: 2%;">18digital</a></address>-->
+			</div>
+			<div class="visible-xs col-xs-12" style="margin:20px 15px 0px 15px;">
+				<address><?php echo $this->getCopyright() ?>
+                    | Desenvolvimento <a href="http://www.18digital.com.br" target="_blank" style="text-decoration: underline; color: #777; margin-right: 2%;">18digital</a>
+                </address>
+			</div>
+			<div class="visible-xs col-xs-12 text-left" style="margin:0px 15px 0px 15px;">
+				<!--<address>Desenvolvimento <a href="http://www.18digital.com.br" target="_blank" style="text-decoration: underline; color: #777; margin-right: 2%;">18digital</a></address>-->
+			</div>
+		</div>
+	</div>
+</div>
+<link href="//fonts.googleapis.com/css?family=Roboto:400,700&subset=latin" rel="stylesheet" type="text/css" />
+<!-- <script type="text/javascript" src="<?php echo $this->getSkinUrl('css/styles_general_footer.min.css') ?>"></script> -->
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/script_general_footer.min.js') ?>"></script>
+<?php /*
+<!-- Scripts -->
+<!--<script type="text/javascript" src="<?php echo Mage::getBaseUrl().'js/jquery/jquery-1.11.1.min.js' ?>"></script>
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl().'js/jquery/jquery-migrate-1.2.1.min.js' ?>"></script>
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl().'js/jquery/jquery_noconflict.js' ?>"></script>
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl().'js/prototype/prototype.js' ?>"></script>
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl().'js/lib/ccard.js' ?>"></script>
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl().'js/prototype/validation.js' ?>"></script>
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl().'js/scriptaculous/builder.js' ?>"></script>
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl().'js/scriptaculous/effects.js' ?>"></script>
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl().'js/scriptaculous/dragdrop.js' ?>"></script>
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl().'js/scriptaculous/controls.js' ?>"></script>
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl().'js/scriptaculous/slider.js' ?>"></script>
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl().'js/varien/js.js' ?>"></script>
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl().'js/varien/form.js' ?>"></script>
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl().'js/mage/translate.js' ?>"></script>
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl().'js/mage/cookies.js' ?>"></script>
+
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/bootstrap.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/jquery.easing.1.3.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/jquery.mobile.customized.min.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/jquery.carouFredSel-6.2.1.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/jquery.touchSwipe.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/jquery.bxslider.min.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/jquery.unveil.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/cherry-fixed-parallax.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/TimelineMax.min.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/TweenMax.min.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/jquery.scrollmagic.min.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/smoothing-scroll.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/tm-stick-up.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/superfish.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/scripts.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/jquery-ui.js') ?>"></script>
+
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl().'js/lib/ds-sleight.js' ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/ie6.js') ?>"></script>-->
+*/ ?>
+<script type="text/javascript">
+	//Close PopUp
+	jQuery('body, html').on('click', '.continue_shopping', function(e){
+		jQuery('.ajaxcontinue').hide();
+	});
+
+	//Parceiros	
+	jQuery(document).ready(function(){	
+		jQuery.fn.suga = function(options) {
+			var settings = jQuery.extend({
+				'transitionSpeed': 3000,
+				'snap': false
+			}, options);
+
+			var $this = jQuery(this);
+
+			// caching $$$
+			var $slide = jQuery('.suga-slide'),
+			$firstEl = jQuery('.suga-slide:first'),
+			$group = jQuery('.suga-slider-group'),
+			$wrap = jQuery('.suga-slider-wrap'),
+			$container = jQuery('.suga-container');
+
+			var slideWidth = $slide.outerWidth(),
+			slideHeight = jQuery('.suga-slide').height(),
+			slideCount = $slide.length,
+			totalWidth = slideWidth * slideCount;
+
+			// set width on group element
+			$group.width(totalWidth);
+			$wrap.height(slideHeight);
+
+			// add first class at start
+			if (!$group.find($firstEl).hasClass("suga-first")) {
+				$group.find($firstEl).addClass("suga-first");
+			}
+
+			// lets move baby
+			var transitionSnap = function() {
+				var $firstEl = $group.find('.suga-first').html();
+				
+				$group.find('.suga-first').animate({
+				'margin-left': '-' + slideWidth + 'px'
+				}, function(){
+				$group.append('<li class="suga-slide">' + $firstEl + '</li>');
+				jQuery(this).remove(); 
+				$group.find('li:first').addClass("suga-first");
+				
+				});  
+			};
+
+			var transitionScroll = function() {
+				var $firstEl = $group.find('.suga-first').html();
+
+				$group.find('.suga-first').animate({
+					'margin-left': '-' + slideWidth + 'px'
+				}, settings.transitionSpeed, 'ease', function(){
+					$group.append('<li class="suga-slide">' + $firstEl + '</li>');
+					jQuery(this).remove(); 
+					$group.find('li:first').addClass("suga-first");
+					transitionScroll();
+				});       
+			};
+
+			if (settings.snap) {
+				window.setInterval(transitionSnap, settings.transitionSpeed);
+			} else {
+				transitionScroll();
+			}
+
+		}
+
+		jQuery(window).load(function(){
+			jQuery('#parceiros').suga({
+				'transitionSpeed': 1000,
+				'snap': true
+			});
+		})
+	});
+</script>
+<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1037286862/?value=0&amp;guid=ON&amp;script=0"/>
+<script type="text/javascript">
+
+	jQuery('body').on('load', function(){
+
+		jQuery.ajax({
+			url: ajaxBaseUrl+'cliente/varnish/getnewslletersplash',
+			success: function(data){
+				if( typeof data == 'undefined' ) return;
+				if( data.trim().length > 0 ) jQuery('body').prepend(data);
+			}
+		});
+	});
+</script>
+<!-- Código do Google para tag de remarketing -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 882181997;
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js" async=""></script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/882181997/?guid=ON&amp;script=0"/>
+</div>
+</noscript>
+<!-- BEGIN JIVOSITE CODE -->
+<script type='text/javascript'>
+(function(){ var widget_id = 'dDkH7NkQvq';var d=document;var w=window;function l(){ var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);}if(d.readyState=='complete'){l();}else{if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+</script>
+
+<!-- END JIVOSITE CODE -->

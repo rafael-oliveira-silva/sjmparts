@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * DDE_Cliente extension for Magento
+ *
+ * Configuration file used to set most of the options
+ *
+ * @category    DDE
+ * @package     DDE_Cliente
+ * @version     1.1.0
+ * @author      Samir J M Araujo
+ * @authorEmail samir.araujo@18digital.com.br
+ * @support     suporte@18digital.com.br
+ */
+-->
+<config>
+	<modules>
+		<DDE_Cliente>
+			<version>1.1.0</version>
+		</DDE_Cliente>
+	</modules>
+	<global>
+		<blocks>
+			<cliente>
+				<class>DDE_Cliente_Block</class>
+			</cliente>
+		</blocks>
+		<helpers>
+			<cliente>
+				<class>DDE_Cliente_Helper</class>
+			</cliente>
+		</helpers>
+		<models>
+	        <cliente>
+	            <class>DDE_Cliente_Model</class>
+	        </cliente>
+      	</models>
+        <resources>
+            <cliente_setup>
+                <setup>
+					<module>DDE_Cliente</module>
+					<class>Mage_Customer_Model_Entity_Setup</class>
+				</setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </cliente_setup>
+            <cliente_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </cliente_write>
+            <cliente_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </cliente_read>
+        </resources>
+		<fieldsets>
+			<checkout_onepage_quote>
+				<customer_tipo>
+					<to_customer>tipo</to_customer>
+				</customer_tipo>
+				<customer_rgie>
+					<to_customer>rgie</to_customer>
+				</customer_rgie>
+			</checkout_onepage_quote>
+			<customer_account>
+				<tipo>
+					<create>1</create>
+					<update>1</update>
+					<name>1</name>
+					<to_quote>customer_tipo</to_quote>
+				</tipo>
+				<rgie>
+					<create>1</create>
+					<update>1</update>
+					<name>1</name>					
+					<to_quote>customer_rgie</to_quote>
+				</rgie>
+			</customer_account>
+			<customer_address>
+                <tipo><to_quote_address>*</to_quote_address></tipo>
+			</customer_address>
+		</fieldsets>
+		<events>
+			<customer_save_before>
+				<observers>
+					<cliente_new_customer_group_check>
+						<type>singleton</type>
+						<class>cliente/observer</class>
+						<method>checkCustomerGroup</method>
+					</cliente_new_customer_group_check>
+				</observers>
+			</customer_save_before>
+		</events>
+	</global>
+	<frontend>
+		<routers>
+			<cliente>
+				<use>standard</use>
+				<args>
+					<module>DDE_Cliente</module>
+					<frontName>cliente</frontName>
+				</args>
+			</cliente>
+		</routers>
+		<layout>
+			<updates>
+				<cliente>
+					<file>cliente.xml</file>
+				</cliente>
+			</updates>
+		</layout>
+	</frontend>
+</config>

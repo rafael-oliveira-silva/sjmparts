@@ -1,0 +1,20 @@
+<?php
+/**
+ * Trezo Cielo Payment Method
+ *
+ * @category   Trezo
+ * @package    Trezo_Cielo
+ * @author     Bruno Roeder <contato@trezo.com.br>
+ *
+ */
+?>
+<?php $info = $this->getInfo(); ?>
+<div class="panel-info-cielo-boleto">
+	<p><?php echo $this->escapeHtml($this->getMethod()->getTitle()) ?></p>
+	<p>
+		<?php if ($info->getAdditionalInformation('boleto_url') != null): ?>
+            <p><?php echo $info->getAdditionalInformation('barcode') ?></p>
+			<a target="_blank" href="<?php echo $info->getAdditionalInformation('boleto_url') ?>"><?php echo $this->helper('trezo_cielo')->__('click here to print the boleto.') ?></a>
+		<?php endif ?>
+	</p>
+</div>

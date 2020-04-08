@@ -1,0 +1,12 @@
+<?php $_code=$this->getMethodCode() ?>
+<ul class="form-list" id="payment_form_<?php echo $_code ?>" style="display:none;">
+    <input type="hidden" value="ITAU_SLIP" name="payment[cc_type]">
+    <p><span class="titulo">Boleto</span></p>
+    <li id="sp_itaushopline_standard_text" style="display:block">
+          <!--<span class="spn_titulo_itau">Voc&ecirc; ser&aacute; redirecionado para o Ita&uacute; ap&oacute;s a confirma&ccedil;&atilde;o do pedido, onde o boleto banc&aacute;rio ser&aacute; automaticamente aberto.</span>-->
+          <span class="spn_titulo_itau">Ap&oacute;s a finaliza&ccedil;&atilde;o do pedido ser&aacute; exibido o bot&atilde;o para impress&atilde;o do boleto banc&aacute;rio.</span>
+          <br><br>
+          <span class="spn_titulo_itau">*O link para reimpress&atilde;o tamb&eacute;m ser&aacute; enviado para seu email e estar&aacute; dispon&iacute;vel em seu painel de controle em detalhes do pedido.</span>
+    </li>
+    <?php echo $this->getChildHtml() ?>
+</ul>

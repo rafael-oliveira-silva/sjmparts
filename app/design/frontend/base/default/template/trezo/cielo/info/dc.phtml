@@ -1,0 +1,20 @@
+<?php
+/**
+ * Trezo Cielo Payment Method
+ *
+ * @category   Trezo
+ * @package    Trezo_Cielo
+ * @author     Bruno Roeder <contato@trezo.com.br>
+ *
+ */
+?>
+<?php $info = $this->getInfo(); ?>
+<div class="panel-info-cielo-dc">
+    <p><?php echo $this->escapeHtml($this->getMethod()->getTitle()) ?></p>
+    <p><?php echo $this->helper('trezo_cielo')->__('Card Owner: %s', $info->getCcOwner()) ?></p>
+    <p><?php echo $this->helper('trezo_cielo')->__('Card Type: %s', $this->getCcTypeName()) ?></p>
+    <p><?php echo $this->helper('trezo_cielo')->__('Card Last 4 Digits: ************%s', $info->getCcLast4()) ?></p>
+    <p><?php echo $this->helper('trezo_cielo')->__('Exp Date: %s', $this->getExpDateFormatted()) ?></p>
+    <p><?php echo $this->helper('trezo_cielo')->__('Transaction Identifier: %s', $info->getAdditionalInformation('tid')) ?></p>
+    <p><?php echo $this->helper('trezo_cielo')->__('Payment Id: %s', $info->getAdditionalInformation('payment_id')) ?></p>
+</div>

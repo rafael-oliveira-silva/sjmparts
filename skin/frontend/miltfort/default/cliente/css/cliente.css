@@ -1,0 +1,10 @@
+.form-list .tipo .radio { float:left; }
+.form-list .tipo label { margin-right:20px; }
+.form-list .country { display:none; }
+.form-list .street-address { width:417px; padding-right:22px; }
+.form-list .street-address .input-box { width:100%; }
+.form-list .street-address input.input-text { width:100%; }
+.form-list .number-address { width:90px; }
+.form-list .number-address .input-box { width:100%; }
+.form-list .number-address input.input-text { width:100%; }
+.loading-field{ color: #999; background-color: #DBDBDB; }

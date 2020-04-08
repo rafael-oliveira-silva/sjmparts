@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<package>
+    <name>Mandae_Shipping</name>
+    <version>1.1.1</version>
+    <stability>stable</stability>
+    <license uri="http://opensource.org/licenses/osl-3.0.php">Open Software License (OSL 3.0)</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>Extens&#xE3;o oficial para integra&#xE7;&#xE3;o com o servi&#xE7;o de entrega Manda&#xEA;.</summary>
+    <description>A Manda&#xEA; tem a estrutura robusta necess&#xE1;ria para fornecer aos clientes servi&#xE7;os de excel&#xEA;ncia com alta confiabilidade.&#xD;
+&#xD;
+-  Rastreamento de encomendas&#xD;
+ - Alta performance&#xD;
+ - Gest&#xE3;o administrativa&#xD;
+-  Conex&#xE3;o de neg&#xF3;cios</description>
+    <notes>Vers&#xE3;o est&#xE1;vel do m&#xF3;dulo Manda&#xEA;</notes>
+    <authors><author><name>Douglas Cunha</name><user>mandae</user><email>contato@mandae.com.br</email></author></authors>
+    <date>2018-09-26</date>
+    <time>13:23:06</time>
+    <contents>
+        <target name="magecommunity">
+            <dir name="Mandae">
+                <dir name="Shipping">
+                    <dir name="Helper">
+                        <file name="Data.php" hash="47eb8dcd05b5174ac49f9e2e830f074b"/>
+                    </dir>
+                    <dir name="Model">
+                        <file name="Api.php" hash="ac75a48d99ef88e4f68386085a804d67"/>
+                        <dir name="Carrier">
+                            <file name="Mandae.php" hash="f1e931b5770535c933fb6fb47238e4c7"/>
+                        </dir>
+                        <dir name="Source">
+                            <file name="Attributes.php" hash="24f150320b3127b9a4ef77e538581fa0"/>
+                            <file name="Dimensions.php" hash="cee782ae264395a37c6701c4315f4af0"/>
+                            <file name="Environment.php" hash="e04d081b2586e5cf2e0e465966d19012"/>
+                            <file name="Services.php" hash="65d6baf42e13d662e50111d156ebe3b6"/>
+                            <file name="Weight.php" hash="4957e4b56d3579ca39d5018b9ccc2b7c"/>
+                        </dir>
+                        <file name="Tracking.php" hash="d87868376625a2809852ae551257c7c5"/>
+                    </dir>
+                    <dir name="etc">
+                        <file name="config.xml" hash="ca15bd5c6c040e5351b01044fd23b58d"/>
+                        <file name="system.xml" hash="22e47942eaf2b6ca02c9018d8c9a9792"/>
+                    </dir>
+                    <dir name="sql">
+                        <dir name="mandae_setup">
+                            <file name="mysql4-install-0.1.0.php" hash="8ec275443cd263d61572e94633f930fd"/>
+                        </dir>
+                    </dir>
+                </dir>
+            </dir>
+        </target>
+        <target name="mageetc">
+            <dir name="modules">
+                <file name="Mandae_Shipping.xml" hash="c1a611ccf9895a409a5945f24cae3c7e"/>
+            </dir>
+        </target>
+        <target name="magelocale">
+            <dir name="pt_BR">
+                <file name="Mandae_Shipping.csv" hash="c3b03e4f6ab204f9e3ad832ce15e7d33"/>
+            </dir>
+        </target>
+    </contents>
+    <compatible/>
+    <dependencies><required><php><min>5.4.0</min><max>7.2.0</max></php></required></dependencies>
+</package>
+<package>
+    <name>SmartHint</name>
+    <version>1.1.3</version>
+    <stability>stable</stability>
+    <license>Software comercial</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>Sistema de Recomenda&#xE7;&#xE3;o</summary>
+    <description>Sistema de Recomenda&#xE7;&#xE3;o</description>
+    <notes>1.0.0 - Recommendation system;&#xD;
+1.0.1 - Order Capture + Bugfix linux installation;&#xD;
+1.0.2 - More than one Stores;&#xD;
+1.0.3 - Warning and logs;&#xD;
+1.0.4 - Add logs on HandleOrder and Try Catch;&#xD;
+1.0.5 - Send Order Post;&#xD;
+1.0.6 - SmartHint-AnonymousConsumer ;&#xD;
+SmartHint-Session save get;&#xD;
+1.0.7 - Add product and category read;&#xD;
+1.0.8 - Bug fix on product management;&#xD;
+1.0.9 - Domain used to process data added;&#xD;
+1.1.0 - Bugfix read on configurable products ;&#xD;
+1.1.1 - Retrieve product value of configurable;&#xD;
+1.1.2 - Bugfix when product dont have image;&#xD;
+1.1.3 - Ajusted anti-build</notes>
+    <authors><author><name>Danilo Dantas Soncini</name><user>danilosoncini</user><email>danilo.soncini@outlook.com</email></author><author><name>Carlos Renan Damarate</name><user>carlosdamarate</user><email>carlos.damarate@smarthint.com.br</email></author></authors>
+    <date>2018-12-17</date>
+    <time>23:27:18</time>
+    <contents><target name="magecommunity"><dir name="Smarthint"><dir name="Recommendation"><dir name="Helper"><file name="Data.php" hash="d8e999079222b147d2246c2687f7c59d"/></dir><dir name="Model"><file name="Observer.php" hash="4f62738ae22b56da296e2f4c3c5538ca"/></dir><dir name="controllers"><file name="IndexController.php" hash="277517ebf8fdc05142a9e2ea6fe4018e"/></dir><dir name="etc"><file name="adminhtml.xml" hash="97cb0960cd2552854302023c0a5c1bb2"/><file name="config.xml" hash="27d41d7c81ee98c249735c2522ebbcd7"/><file name="system.xml" hash="d6ae12256210ab82b96ace3cfc5355b8"/></dir></dir></dir></target><target name="mage"><dir name="app"><dir name="etc"><dir name="modules"><file name="Smarthint_Recommendation.xml" hash="dce58546f1500a44a54d697640b8e053"/></dir></dir></dir></target></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.4.0</min><max>7.2.0</max></php><extension><name>curl</name><min/><max/></extension></required></dependencies>
+</package>
+<package>
+    <name>Trustvox</name>
+    <version>2.0.5</version>
+    <stability>beta</stability>
+    <license>MIT</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>Trustvox</summary>
+    <description>Trustvox integration</description>
+    <notes>2.0.5 beta</notes>
+    <authors><author><name>Andrew Marques</name><user>andrewmarques</user><email>andrew@foxsea.com.br</email></author></authors>
+    <date>2018-05-10</date>
+    <time>19:25:07</time>
+    <contents><target name="magecommunity"><dir name="Hibrido"><dir name="Trustvox"><file name=".DS_Store" hash="f45db488d413687cd79a8c0d7db277b7"/><dir name="Helper"><file name=".DS_Store" hash="437544c43163b0c119f0d54b3165090c"/><file name="Data.php" hash="72d8b7a78b122ea3844f8ef5c28eab77"/></dir><dir name="Model"><file name=".DS_Store" hash="f878800a1a7e243954cdc3d56287466b"/><file name="Observer.php" hash="121c00a960f51f3462e33a24aa254896"/><dir name="System"><file name=".DS_Store" hash="f7fcc3e55a5f7440d39aa0172892a336"/><dir name="Config"><file name=".DS_Store" hash="9011af017df0b449f7ab4227b3d967a1"/><dir name="Source"><file name=".DS_Store" hash="61874d061dc6c57f174cd94c49560be1"/><file name="Posicoes.php" hash="09821c7e95cac9a0170fe0d69679a533"/><file name="Yesno.php" hash="9acbf9f4a51b759cf1a8150c81be8a33"/></dir></dir></dir></dir><dir name="controllers"><file name=".DS_Store" hash="e421af90c534c4b010e5fc9382847ef7"/><file name="OrdersController.php" hash="c7e85ef9cda3da007261be91ae131653"/></dir><dir name="etc"><file name=".DS_Store" hash="27a317087bcd060fbe002c2c804d1e4b"/><file name="adminhtml.xml" hash="fac4b4121b0e57ec831361c486039d42"/><file name="config.xml" hash="a4e214234b50786de7fb9c5d84547e68"/><file name="system.xml" hash="ba88aec418411a86cc6501f5080e6e66"/></dir></dir></dir></target><target name="magedesign"><dir name="frontend"><dir name="base"><dir name="default"><dir name="layout"><dir name="hibrido"><dir name="trustvox"><file name="trustvox.xml" hash="294a0713e2da96e94083dd0995991da5"/></dir></dir></dir><dir name="template"><dir name="hibrido"><dir name="trustvox"><file name="js_trustvox.phtml" hash="415daeb902117c59feff4c0eabe611cf"/><file name="trustvox.phtml" hash="f7e9e653a0678feaf13641dfdbb4bfc6"/><file name="widget_trustvox.phtml" hash="60d93cdb049c9beab6fa78daa264eea1"/></dir></dir></dir></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Hibrido_Trustvox.xml" hash="c1c221803d2bd6f0f8b4548762c096bc"/></dir></target></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.4.0</min><max>7.1.0</max></php></required></dependencies>
+</package>

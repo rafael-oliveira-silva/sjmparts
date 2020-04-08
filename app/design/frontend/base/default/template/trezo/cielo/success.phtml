@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * Trezo Cielo Payment Method
+ *
+ * @category   Trezo
+ * @package    Trezo_Cielo
+ * @author     Bruno Roeder <contato@trezo.com.br>
+ *
+ */
+?>
+
+<?php if ($this->canShowBoleto()) : ?>
+    <div class="cielo-boleto-print">
+        <p>
+            <?php echo $this->__('Boleto:') ?>
+            <a target="_blank" href="<?php echo $this->getBoletoUrl() ?>"><?php echo $this->__('click here to print the boleto.') ?></a>
+        </p>
+    </div>
+<?php endif; ?>
+
+<?php if ($this->canShowCcInfo()) : ?>
+    <div class="cielo-cc-info">
+        <p><?php echo $this->__('Credit Card:') ?></p>
+        <p><?php echo $this->__('Card Owner: %s', $this->getOrder()->getPayment()->getCcOwner()) ?></p>
+        <p><?php echo $this->__('Card Last 4 Digits: ************%s', $this->getOrder()->getPayment()->getCcLast4()) ?></p>
+        <p><?php echo $this->__('Card Installments: %sx', $this->getInfos('cc_installments')) ?></p>
+        <p><?php echo $this->__('Transaction Identifier: %s', $this->getInfos('tid')) ?></p>
+    </div>
+<?php endif; ?>
+
+<?php if ($this->canShowDcInfo()) : ?>
+    <div class="cielo-dc-info">
+        <p><?php echo $this->__('Debit Card:') ?></p>
+        <p><?php echo $this->__('Card Owner: %s', $this->getOrder()->getPayment()->getCcOwner()) ?></p>
+        <p><?php echo $this->__('Card Last 4 Digits: ************%s', $this->getOrder()->getPayment()->getCcLast4()) ?></p>
+        <p><?php echo $this->__('Transaction Identifier: %s', $this->getInfos('tid')) ?></p>
+    </div>
+<?php endif; ?>

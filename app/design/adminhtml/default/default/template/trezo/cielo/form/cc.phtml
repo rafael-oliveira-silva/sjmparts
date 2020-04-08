@@ -1,0 +1,243 @@
+<?php
+/**
+ * Trezo Cielo Payment Method
+ *
+ * @category   Treazo
+ * @package    Trezo_Cielo
+ * @author     Bruno Roeder <contato@trezo.com.br>
+ *
+ */
+?>
+<?php $_ccType = $this->getInfoData('cc_type') ?>
+<?php $ccTypes = $this->getCcAvailableTypes(); ?>
+<?php $_code = $this->getMethodCode() ?>
+
+<div id="payment_form_<?php echo $_code ?>_cc" style="">
+    <ul class="form-list" id="payment_form_<?php echo $_code ?>" style="display:none;">
+        <li>
+            <label for="<?php echo $_code ?>_cc_number" class="required"><em>*</em><?php echo $this->__('Credit Card Number') ?></label>
+            <div class="input-box">
+                <input type="text" id="<?php echo $_code ?>_cc_number" name="payment[cc_number]" title="<?php echo Mage::helper('core')->jsQuoteEscape($this->__('Credit Card Number')) ?>" maxlength="20" class="input-text validate-cc-number validate-cc-type" autocomplete="off" value="" />
+            </div>
+        </li>
+        <li>
+            <ul class="cards">
+                <?php foreach ($this->getCcTypes() as $_typeCode => $_typeName): ?>
+                    <li class="<?php echo strtolower(str_replace(' ', '_',$_typeName)); ?>" id="<?php echo $_code.strtolower(str_replace(' ', '_',$_typeName)); ?>" data-code="<?php echo $_typeCode; ?>"><?php echo $_typeName ?></li>
+                <?php endforeach; ?>
+                <input type="hidden" id="hiddenPaymentCielo" name="payment[cc_type]" autocomplete="off" value="" />
+            </ul>
+        </li>
+        <li>
+            <label for="<?php echo $_code ?>_cc_owner" class="required"><em>*</em><?php echo $this->__('Name on Card') ?></label>
+            <div class="input-box">
+                <input type="text" title="<?php echo $this->__('Name on Card') ?>" class="input-text required-entry" id="<?php echo $_code ?>_cc_owner" name="payment[cc_owner]" autocomplete="off" value="<?php echo $this->escapeHtml($this->getInfoData('cc_owner')) ?>" />
+            </div>
+        </li>
+        <li id="<?php echo $_code ?>_cc_type_exp_div">
+            <label for="<?php echo $_code ?>_expiration" class="required"><em>*</em><?php echo $this->__('Expiration Date') ?></label>
+            <div class="input-box">
+                <div class="v-fix">
+                    <select id="<?php echo $_code ?>_expiration" name="payment[cc_exp_month]" class="month validate-cc-exp required-entry">
+                        <?php $_ccExpMonth = $this->getInfoData('cc_exp_month') ?>
+                        <?php foreach ($this->getCcMonths() as $k=>$v): ?>
+                            <option value="<?php echo $k?$k:'' ?>"<?php if($k==$_ccExpMonth): ?> selected="selected"<?php endif ?>><?php echo $v ?></option>
+                        <?php endforeach ?>
+                    </select>
+                </div>
+                <div class="v-fix">
+                    <?php $_ccExpYear = $this->getInfoData('cc_exp_year') ?>
+                    <select id="<?php echo $_code ?>_expiration_yr" name="payment[cc_exp_year]" class="year required-entry">
+                        <?php foreach ($this->getCcYears() as $k=>$v): ?>
+                            <option value="<?php echo $k?$k:'' ?>"<?php if($k==$_ccExpYear): ?> selected="selected"<?php endif ?>><?php echo $v ?></option>
+                        <?php endforeach ?>
+                    </select>
+                </div>
+            </div>
+        </li>
+        <?php echo $this->getChildHtml() ?>
+        <?php if($this->hasVerification()): ?>
+            <li id="<?php echo $_code ?>_cc_type_cvv_div">
+                <label for="<?php echo $_code ?>_cc_cid" class="required"><em>*</em><?php echo $this->__('Card Verification Number') ?></label>
+                <div class="input-box">
+                    <div class="v-fix">
+                        <input type="text" title="<?php echo Mage::helper('core')->jsQuoteEscape($this->__('Card Verification Number')) ?>" class="input-text cvv required-entry validate-cc-cvn" id="<?php echo $_code ?>_cc_cid" name="payment[cc_cid]" autocomplete="off" value="" />
+                    </div>
+                    <a href="#" class="cvv-what-is-this"><?php echo $this->__('What is this?') ?></a>
+                </div>
+            </li>
+        <?php endif; ?>
+        <li>
+            <label for="<?php echo $_code ?>_installments" class="required"><em>*</em><?php echo $this->__('Installments') ?></label>
+            <div class="input-box">
+                <select id="<?php echo $_code ?>_installments" name="payment[installments]" title="<?php echo $this->__('Installments') ?>" class="required-entry validate-select">
+                    <option value=""><?php echo $this->__('--Please Select--') ?></option>
+                <?php $_installments = $this->getInfoData('installments') ?>
+                <?php foreach ($this->getInstallmentsAvailables() as $_installmentValue => $_installmentLabel): ?>
+                    <option value="<?php echo $_installmentValue ?>"<?php /* if($_installmentValue==$_installments): ?> selected="selected"<?php endif */ ?>><?php echo $_installmentLabel ?></option>
+                <?php endforeach ?>
+                </select>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    document.getElementById('<?php echo $_code ?>_cc_number').addEventListener('keyup', function(){
+        var cardmc = document.getElementById('<?php echo $_code ?>mc');
+        var cardvi = document.getElementById('<?php echo $_code ?>vi');
+        var cardae = document.getElementById('<?php echo $_code ?>ae');
+        var cardel = document.getElementById('<?php echo $_code ?>el');
+        var carddn = document.getElementById('<?php echo $_code ?>dn');
+
+        var cardau = document.getElementById('<?php echo $_code ?>au');
+        var cardjc = document.getElementById('<?php echo $_code ?>jc');
+        var carddc = document.getElementById('<?php echo $_code ?>dc');
+        var cardhi = document.getElementById('<?php echo $_code ?>hi');
+
+        var hiddenPaymentCielo = document.getElementById('hiddenPaymentCielo');
+
+        if(cardmc != null){
+            cardmc.classList.remove('on');
+        }
+        if(cardvi != null){
+            cardvi.classList.remove('on');
+        }
+        if(cardae != null){
+            cardae.classList.remove('on');
+        }
+        if(cardel != null){
+            cardel.classList.remove('on');
+        }
+        if(carddn != null){
+            carddn.classList.remove('on');
+        }
+
+        if(cardau != null){
+            cardau.classList.remove('on');
+        }
+        if(cardjc != null){
+            cardjc.classList.remove('on');
+        }
+        if(carddc != null){
+            carddc.classList.remove('on');
+        }
+        if(cardhi != null){
+            cardhi.classList.remove('on');
+        }
+
+        var regexVisa = /^4[0-9]{12}(?:[0-9]{3})?/;
+        var regexMaster = /^5[^078][0-9]{14}/;
+        var regexAmex = /^3[47][0-9]{13}/;
+        var regexDiners = /^3(?:0[0-5]|[68][0-9])[0-9]{11}/;
+        var regexElo = /^(40117[8-9]|431274|438935|451416|457393|45763[1-2]|506(699|7[0-6][0-9]|77[0-8])|509\d{3}|504175|627780|636297|636368|65003[1-3]|6500(3[5-9]|4[0-9]|5[0-1])|6504(0[5-9]|[1-3][0-9])|650(4[8-9][0-9]|5[0-2][0-9]|53[0-8])|6505(4[1-9]|[5-8][0-9]|9[0-8])|6507(0[0-9]|1[0-8])|65072[0-7]|6509(0[1-9]|1[0-9]|20)|6516(5[2-9]|[6-7][0-9])|6550([0-1][0-9]|2[1-9]|[3-4][0-9]|5[0-8]))/;
+        var regexDiscover = /^6(?:011|5[0-9]{2})[0-9]{12}/;
+        var regexJCB = /^(?:2131|1800|35\d{3})\d{11}/;
+        var regexHipercard = /^(606282\d{10}(\d{3})?)|(3841\d{15})$/;
+        var regexAura = /^5078[0-9]{15}$/;
+
+        var vlInput = document.getElementById("<?php echo $_code ?>_cc_number").value;
+        vlInput = vlInput.replace(/[^\d\.]*/g, '');
+        document.getElementById("<?php echo $_code ?>_cc_number").value = vlInput;
+
+        if (regexElo.test(vlInput)) {
+            cardel.classList.remove('on');
+            cardel.classList.add('on');
+            hiddenPaymentCielo.value = 'EL';
+        } else if(regexDiners.test(vlInput)) {
+            carddn.classList.remove('on');
+            carddn.classList.add('on');
+            hiddenPaymentCielo.value = 'DN';
+        } else if (regexAmex.test(vlInput)) {
+            cardae.classList.remove('on');
+            cardae.classList.add('on');
+            hiddenPaymentCielo.value = 'AE';
+        } else if(regexVisa.test(vlInput)) {
+            cardvi.classList.remove('on');
+            cardvi.classList.add('on');
+            hiddenPaymentCielo.value = 'VI';
+        } else if(regexMaster.test(vlInput)) {
+            cardmc.classList.remove('on');
+            cardmc.classList.add('on');
+            hiddenPaymentCielo.value = 'MC';
+        } else if(regexDiscover.test(vlInput)) {
+            carddc.classList.remove('on');
+            carddc.classList.add('on');
+            hiddenPaymentCielo.value = 'DC';
+        } else if(regexJCB.test(vlInput)) {
+            cardjc.classList.remove('on');
+            cardjc.classList.add('on');
+            hiddenPaymentCielo.value = 'JC';
+        } else if(regexHipercard.test(vlInput)) {
+            cardhi.classList.remove('on');
+            cardhi.classList.add('on');
+            hiddenPaymentCielo.value = 'HI';
+        } else if(regexAura.test(vlInput)) {
+            cardau.classList.remove('on');
+            cardau.classList.add('on');
+            hiddenPaymentCielo.value = 'AU';
+        }
+
+    }, false);
+
+    document.getElementById('<?php echo $_code ?>_cc_cid').addEventListener('keyup', function(){
+        var vlInputCID = document.getElementById("<?php echo $_code ?>_cc_cid").value;
+        vlInputCID = vlInputCID.replace(/[^\d\.]*/g, '');
+        document.getElementById("<?php echo $_code ?>_cc_cid").value = vlInputCID;
+    }, false);
+
+</script>
+
+<style type="text/css">
+    .tool-tip {
+        margin-left: 165px;
+        margin-top: -250px;
+        position: absolute;
+    }
+    .card-logo { }
+    .card-logo li { float: left; text-align: center; margin-right: 15px !important;height:57px;vertical-align:bottom;display:block; position:relative; }
+    .card-logo li .validation-advice {position:absolute;top:55px;width:150px}
+    .payment-methods .form-list li .input-box .input-text.cvv { width:50px; margin-right:5px}
+    .payment-methods .form-list li .input-box select { width:auto !important;margin-right:5px}
+
+    .cards li {
+        -webkit-transition: all .2s;
+        -moz-transition: all .2s;
+        -ms-transition: all .2s;
+        -o-transition: all .2s;
+        transition: all .2s;
+        background-image: url('<?php echo $this->getSkinUrl('images/cielo/bandeiras-cielo.png');?>');
+        background-position: 0 32px;
+        display:inline-block;
+        height:30px;
+        margin-right: 8px;
+        text-indent: -9999px;
+        width:46px;
+    }
+
+    .cards .vi.on { background-position: 0px 0px; }
+
+    .cards .ae { background-position: 312px 32px; }
+    .cards .ae.on { background-position: 312px 0px; }
+
+    .cards .mc { background-position: 414px 32px; }
+    .cards .mc.on { background-position: 414px 0px; }
+
+    .cards .dn { background-position: 267px 32px; }
+    .cards .dn.on { background-position: 267px 0px; }
+
+    .cards .el { background-position: 367px 32px; }
+    .cards .el.on { background-position:367px 0px; }
+
+    .cards .dc { background-position: 216px 32px; }
+    .cards .dc.on { background-position:216px 0px; }
+
+    .cards .jc { background-position: 170px 32px; }
+    .cards .jc.on { background-position:170px 0px; }
+
+    .cards .hi { background-position: 65px 32px; width:58px}
+    .cards .hi.on { background-position:65px 0px; }
+
+    .cards .au { background-position: 124px 32px; }
+    .cards .au.on { background-position:124px 0px; }
+</style>

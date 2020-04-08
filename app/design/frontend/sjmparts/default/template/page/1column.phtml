@@ -1,0 +1,151 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Template for Mage_Page_Block_Html
+ */
+?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>">
+<head>
+<?php echo $this->getChildHtml('head') ?>
+</head>
+<body<?php echo $this->getBodyClass()?' class="ps-static '.$this->getBodyClass().'"':'' ?>>
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KKWHLG"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KKWHLG');</script>
+<!-- End Google Tag Manager -->
+<?php echo $this->getChildHtml('after_body_start') ?>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.4";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div class="wrapper ps-static <?php echo $this->getLang().'-lang-class';?>">
+	<?php echo $this->getChildHtml('global_notices') ?>
+	<div class="page">
+		<?php echo $this->getChildHtml('header') ?>
+		<?php echo $this->getChildHtml('banner_creator_top_slider') ?>
+		<div class="main-container col1-layout">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="main">
+							<?php echo $this->getChildHtml('breadcrumbs') ?>
+							<div class="col-main">
+								<div class="padding-s">
+									<?php echo $this->getChildHtml('global_messages') ?>
+									<?php
+                                        $routeName = Mage::app()->getRequest()->getRouteName();
+                                        $identifier = Mage::getSingleton('cms/page')->getIdentifier();
+
+                                        if ($routeName == 'cms' && $identifier == 'home'):
+                                    ?>
+										<?php //if($_SERVER['REMOTE_ADDR'] == '201.6.233.203'):?>
+											<div data-block-id="featured_first" data-type="catalog/product_list" data-template="catalog/product/featured_first.phtml" class="load-div"></div>
+											<div data-block-id="mobile_home_first" data-type="core/template" data-template="dde/mobile_home_first.phtml" class="load-div"></div>
+											<div data-block-id="product_new" data-type="catalog/product_new" data-template="catalog/product/new.phtml" class="load-div"></div>
+											<div data-block-id="featured_last" data-type="catalog/product_list" data-template="catalog/product/featured_last.phtml" class="load-div"></div>
+											<div data-block-id="mobile_home_last" data-type="core/template" data-template="dde/mobile_home_last.phtml" class="load-div"></div>
+											<script type="text/javascript">
+												<?php /* ?>
+                                                // not minified/babel below
+                                                // let ids = [];
+                                                // for( let item of document.querySelectorAll('[data-block-id]') ){
+                                                // 	ids.push({
+                                                // 		'id': item.getAttribute('data-block-id'),
+                                                // 		'type': item.getAttribute('data-type'),
+                                                // 		'template': item.getAttribute('data-template')
+                                                // 	});
+                                                // }
+
+                                                // let data = new FormData();
+                                                // data.append('blocks', JSON.stringify(ids));
+
+                                                // fetch(baseUrl+'cliente/cep/returnblocks', {method: 'POST', body: data}).then((response) => {
+                                                // 	response.json().then(_response => {
+                                                // 		for( item of _response.content ){
+                                                // 			let target = document.querySelector('[data-block-id="'+item.key+'"]');
+                                                // 			target.innerHTML = item.content;
+                                                // 			target.removeAttribute('data-block-id');
+                                                // 			target.removeAttribute('data-type');
+                                                // 			target.removeAttribute('data-template');
+                                                // 			target.removeAttribute('class');
+                                                // 			target.setAttribute('data-rendered', item.key);
+                                                // 		}
+                                                // 	});
+                                                // });
+                                                <?php */ ?>
+												var ids=[],_iteratorNormalCompletion=!0,_didIteratorError=!1,_iteratorError=void 0;try{for(var _step,_item,_iterator=document.querySelectorAll('[data-block-id]')[Symbol.iterator]();!(_iteratorNormalCompletion=(_step=_iterator.next()).done);_iteratorNormalCompletion=!0)_item=_step.value,ids.push({id:_item.getAttribute('data-block-id'),type:_item.getAttribute('data-type'),template:_item.getAttribute('data-template')})}catch(a){_didIteratorError=!0,_iteratorError=a}finally{try{!_iteratorNormalCompletion&&_iterator.return&&_iterator.return()}finally{if(_didIteratorError)throw _iteratorError}}var data=new FormData;data.append('blocks',JSON.stringify(ids)),fetch(baseUrl+'cliente/cep/returnblocks',{method:'POST',body:data}).then(function(a){a.json().then(function(b){var _iteratorNormalCompletion2=!0,_didIteratorError2=!1,_iteratorError2=void 0;try{for(var d,c=b.content[Symbol.iterator]();!(_iteratorNormalCompletion2=(d=c.next()).done);_iteratorNormalCompletion2=!0){item=d.value;var e=document.querySelector('[data-block-id="'+item.key+'"]');e.innerHTML=item.content,e.removeAttribute('data-block-id'),e.removeAttribute('data-type'),e.removeAttribute('data-template'),e.removeAttribute('class'),e.setAttribute('data-rendered',item.key)}}catch(f){_didIteratorError2=!0,_iteratorError2=f}finally{try{!_iteratorNormalCompletion2&&c.return&&c.return()}finally{if(_didIteratorError2)throw _iteratorError2}}})});
+											</script>
+										<?php //else:?>
+											<?php //echo $this->getChildHtml('content')?>
+										<?php //endif?>
+									<?php else: ?>
+										<?php echo $this->getChildHtml('content') ?>
+									<?php endif ?>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Lightbox -->
+		<?php echo $this->getChildHtml('lightbox.homepage'); ?>
+		
+		<?php echo $this->getChildHtml('footer') ?>
+		<?php echo $this->getChildHtml('global_cookie_notice') ?>
+		<?php echo $this->getChildHtml('before_body_end') ?>
+	</div>
+</div>
+<?php echo $this->getAbsoluteFooter() ?>
+
+<script>
+var _trustvox_shelf_rate = _trustvox_shelf_rate || [];
+_trustvox_shelf_rate.push(['_storeId', '5056']);
+_trustvox_shelf_rate.push(['_productContainer', 'body']);
+_trustvox_shelf_rate.push(['_watchSubtree', true]);
+
+(function() {
+    var tv = document.createElement('script');
+    tv.type = 'text/javascript'; tv.async = true;
+    tv.src = '//rate.trustvox.com.br/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(tv, s);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<?php
+/**
+ * Trezo Cielo Payment Method
+ *
+ * @category   Trezo
+ * @package    Trezo_Cielo
+ * @author     Bruno Roeder <contato@trezo.com.br>
+ *
+ */
+?>
+<?php $_dcType = $this->getInfoData('dc_type') ?>
+<?php $dcTypes = $this->getdcAvailableTypes(); ?>
+<?php $transferBlockId = $this->getUniIdTransferBlock(); ?>
+<?php $_code = $this->getMethodCode() ?>
+
+<div id="payment_form_<?php echo $_code ?>_dc" style="">
+    <ul class="form-list" id="payment_form_<?php echo $_code ?>" style="display:none;">
+
+    <li>
+        <label for="<?php echo $_code ?>_dc_number" class="required"><em>*</em><?php echo $this->__('Credit Card Number') ?></label>
+        <div class="input-box">
+            <input type="text" id="<?php echo $_code ?>_dc_number" name="payment[dc_number]" title="<?php echo Mage::helper('core')->jsQuoteEscape($this->__('Credit Card Number')) ?>" class="input-text validate-dc-number validate-dc-type" value="" />
+        </div>
+    </li>
+
+
+    <li>
+        <ul class="cards">
+            <?php foreach ($this->getdcTypes() as $_typeCode => $_typeName): ?>
+                <li class="<?php echo strtolower(str_replace(' ', '_',$_typeName)); ?>" id="<?php echo strtolower(str_replace(' ', '_',$_typeName)); ?>" data-code="<?php echo $_typeCode; ?>"><?php echo $_typeName ?></li>
+            <?php endforeach; ?>
+            <input type="hidden" id="hiddenPaymentCielo" name="payment[dc_type]" value="" />
+        </ul>
+    </li>
+
+
+    <?php /* transfer block uniq id field */?>
+    <input type="hidden" id="<?php echo $_code ?>_transfer_block_uniq_id" name="payment[tranfer_block_uniq_id]" value="<?php echo $this->escapeHtml($transferBlockId) ?>" />
+
+    <li>
+        <label for="<?php echo $_code ?>_dc_owner" class="required"><em>*</em><?php echo $this->__('Name on Card') ?></label>
+        <div class="input-box">
+            <input type="text" title="<?php echo $this->__('Name on Card') ?>" class="input-text required-entry" id="<?php echo $_code ?>_dc_owner" name="payment[dc_owner]" value="<?php echo $this->escapeHtml($this->getInfoData('dc_owner')) ?>" />
+        </div>
+    </li>
+
+    <li id="<?php echo $_code ?>_dc_type_exp_div">
+        <label for="<?php echo $_code ?>_expiration" class="required"><em>*</em><?php echo $this->__('Expiration Date') ?></label>
+        <div class="input-box">
+            <div class="v-fix">
+                <select id="<?php echo $_code ?>_expiration" name="payment[dc_exp_month]" class="month validate-dc-exp required-entry">
+                    <?php $_dcExpMonth = $this->getInfoData('dc_exp_month') ?>
+                    <?php foreach ($this->getdcMonths() as $k=>$v): ?>
+                        <option value="<?php echo $k?$k:'' ?>"<?php if($k==$_dcExpMonth): ?> selected="selected"<?php endif ?>><?php echo $v ?></option>
+                    <?php endforeach ?>
+                </select>
+            </div>
+            <div class="v-fix">
+                <?php $_dcExpYear = $this->getInfoData('dc_exp_year') ?>
+                <select id="<?php echo $_code ?>_expiration_yr" name="payment[dc_exp_year]" class="year required-entry">
+                    <?php foreach ($this->getdcYears() as $k=>$v): ?>
+                        <option value="<?php echo $k?$k:'' ?>"<?php if($k==$_dcExpYear): ?> selected="selected"<?php endif ?>><?php echo $v ?></option>
+                    <?php endforeach ?>
+                </select>
+            </div>
+        </div>
+    </li>
+    <?php echo $this->getChildHtml() ?>
+    <?php if($this->hasVerification()): ?>
+        <li id="<?php echo $_code ?>_dc_type_cvv_div">
+            <label for="<?php echo $_code ?>_dc_cid" class="required"><em>*</em><?php echo $this->__('Card Verification Number') ?></label>
+            <div class="input-box">
+                <div class="v-fix">
+                    <input type="text" title="<?php echo Mage::helper('core')->jsQuoteEscape($this->__('Card Verification Number')) ?>" class="input-text cvv required-entry validate-dc-cvn" id="<?php echo $_code ?>_dc_cid" name="payment[dc_cid]" value="" />
+                </div>
+                <a href="#" class="cvv-what-is-this"><?php echo $this->__('What is this?') ?></a>
+            </div>
+        </li>
+    <?php endif; ?>
+
+    <li>
+        <div class="cielo-tranfer-block" style="display: none;">
+             <!-- Iframe Transfer Block -->
+            <iframe src="https://carteirac1.hml.cielo.com.br/transaction/transfer?idUnico=<?php echo $transferBlockId ?>"
+            width="0"
+            marginwidth="0"
+            height="0"
+            marginheight="0"
+            frameborder="0">
+            </iframe>
+             <!-- /Iframe Transfer Block -->
+         </div>
+     </li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    document.getElementById('<?php echo $_code ?>_dc_number').addEventListener('keyup', function(){
+        var cardmc = document.getElementById('mc');
+        var cardvi = document.getElementById('vi');
+        var cardae = document.getElementById('ae');
+        var cardel = document.getElementById('el');
+        var carddn = document.getElementById('dn');
+        var hiddenPaymentCielo = document.getElementById('hiddenPaymentCielo');
+
+        if(cardmc != null){
+            cardmc.classList.remove('on');
+        }
+        if(cardvi != null){
+            cardvi.classList.remove('on');
+        }
+        if(cardae != null){
+            cardae.classList.remove('on');
+        }
+        if(cardel != null){
+            cardel.classList.remove('on');
+        }
+        if(carddn != null){
+            carddn.classList.remove('on');
+        }
+
+        var regexVisa   = /^4[0-9]{12}(?:[0-9]{3})?/;
+        var regexMaster = /^5[0-9]{15}/;
+        var regexAmex = /^3[47][0-9]{13}/;
+        var regexDiners = /^3(?:0[0-5]|[68][0-9])[0-9]{11}/;
+        var regexDiscover = /^6(?:011|5[0-9]{2})[0-9]{12}/;
+        var regexJCB = /^(?:2131|1800|35\d{3})\d{11}/;
+        var regexElo =/^((((636368)|(438935)|(504175)|(451416)|(636297))\d{0,10})|((509)|(5067)|(4576)|(4011))\d{0,12})$/;
+
+        var vlInput = document.getElementById("<?php echo $_code ?>_dc_number").value;
+
+        if(regexVisa.test(vlInput)){
+            cardvi.classList.remove('on');
+            cardvi.classList.add('on');
+            hiddenPaymentCielo.value = 'VI';
+        }
+
+        if(regexMaster.test(vlInput)){
+            cardmc.classList.remove('on');
+            cardmc.classList.add('on');
+            hiddenPaymentCielo.value = 'MC';
+        }
+
+        if(regexElo.test(vlInput)){
+            cardel.classList.remove('on');
+            cardel.classList.add('on');
+            hiddenPaymentCielo.value = 'EL';
+        }
+
+        if(regexDiners.test(vlInput)){
+            carddn.classList.remove('on');
+            carddn.classList.add('on');
+            hiddenPaymentCielo.value = 'DN';
+        }
+    }, false);
+</script>
+
+<style type="text/css">
+    .tool-tip {
+        margin-left: 165px;
+        margin-top: -250px;
+        position: absolute;
+    }
+    .card-logo { }
+    .card-logo li { float: left; text-align: center; margin-right: 15px !important;height:57px;vertical-align:bottom;display:block; position:relative; }
+    .card-logo li .validation-advice {position:absolute;top:55px;width:150px}
+    .payment-methods .form-list li .input-box .input-text.cvv { width:50px; margin-right:5px}
+    .payment-methods .form-list li .input-box select { width:auto !important;margin-right:5px}
+
+    .cards li {
+        -webkit-transition: all .2s;
+        -moz-transition: all .2s;
+        -ms-transition: all .2s;
+        -o-transition: all .2s;
+        transition: all .2s;
+        background-image: url('<?php echo $this->getSkinUrl('images/cielo/card_logos.png');?>');
+        background-position: 0 32px;
+        display:inline-block;
+        height:30px;
+        margin-right: 8px;
+        text-indent: -9999px;
+        width:46px;
+    }
+
+    .cards .vi.on { background-position: 0px 0px; }
+    .cards .ae { background-position: 185px 32px; }
+    .cards .ae.on { background-position: 185px 0; }
+    .cards .mc { background-position: 139px 32px; }
+    .cards .mc.on { background-position: 139px 0px; }
+    .cards .dn { background-position: 93px 32px; }
+    .cards .dn.on { background-position: 93px 0px; }
+    .cards .el { background-position: 47px 32px; }
+    .cards .el.on { background-position:47px 0px; }
+</style>
+
+

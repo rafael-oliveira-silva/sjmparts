@@ -1,0 +1,304 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <payment>
+            <groups>
+                <cielo translate="label" module="payment">
+                    <label>Cielo Webservice - Cartão de Crédito</label>
+                    <sort_order>670</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </active>
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </title>
+                        <order_status translate="label">
+                            <label>New order status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_order_status_processing</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </order_status>
+                        <cctypes translate="label">
+                            <label>Credit Card Types</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>cielo/source_cctype</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <can_be_empty>1</can_be_empty>
+                        </cctypes>
+                        <environment translate="label">
+                            <label>Environment</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>cielo/source_environment</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </environment>
+                        
+						<merchant_id translate="label">
+                            <label>Merchant ID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </merchant_id> 
+                        <merchant_key translate="label">
+                            <label>Merchant Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>41</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </merchant_key>                        
+                        <parcelamento translate="label">
+                            <label>Parcelamento</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>cielo/source_parcelamento</source_model>
+                            <sort_order>45</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <can_be_empty>1</can_be_empty>
+                        </parcelamento>
+                        <parcelas translate="label">
+                            <label>Quantidade máxima de parcelas</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>46</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </parcelas>
+                        <valor_minimo translate="label">
+                            <label>Valor minimo por parcelas</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>47</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </valor_minimo>
+                        <parcelas_sem_juros translate="label">
+                            <label>Parcelas sem juros</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>48</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </parcelas_sem_juros>
+                        <taxa_juros translate="label">
+                            <label>Taxa de juros mensal(%)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>49</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </taxa_juros>
+						<categorias_especiais translate="label">
+							<label>Categorias</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>60</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment><![CDATA[Inserir as IDs das categorias que devem receber as regras especiais separadas por vírgula sem espaço! (Ex.: 52,55,45)]]></comment>
+						</categorias_especiais>
+                        <parcelas_especiais translate="label">
+                            <label>Quantidade máxima de parcelas (especiais)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<comment><![CDATA[Quantidade máxima de parcelas disponíveis apenas para as categorias informadas acima]]></comment>
+                        </parcelas_especiais>
+                        <valor_minimo_especial translate="label">
+                            <label>Valor minimo por parcelas (especiais)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<comment><![CDATA[Valor mínimo das parcelas para as categorias informadas acima]]></comment>
+                        </valor_minimo_especial>
+                        <parcelas_sem_juros_especial translate="label">
+                            <label>Parcelas sem juros (especiais)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<comment><![CDATA[Parcelas sem juros para as categorias informadas acima]]></comment>
+                        </parcelas_sem_juros_especial>
+                        <taxa_juros_especial translate="label">
+                            <label>Taxa de juros mensal(%) (especiais)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<comment><![CDATA[Taxa de juros mensal para as categorias informadas acima]]></comment>
+                        </taxa_juros_especial>
+                        <captura translate="label">
+                            <label>Capturar Automaticamente?</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </captura>
+
+                        <!-- <merchant_id translate="label">
+                            <label>Merchant ID</label>
+                            <frontend_type>obscure</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </merchant_id>
+                        <merchant_key translate="label">
+                            <label>Merchant Key</label>
+                            <frontend_type>obscure</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <sort_order>41</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </merchant_key> -->
+                        <allowspecific translate="label">
+                            <label>Payment from Applicable Countries</label>
+                            <frontend_type>allowspecific</frontend_type>
+                            <sort_order>120</sort_order>
+                            <source_model>adminhtml/system_config_source_payment_allspecificcountries</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </allowspecific>
+                        <specificcountry translate="label">
+                            <label>Payment from Specific Countries</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <sort_order>130</sort_order>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <can_be_empty>1</can_be_empty>
+                        </specificcountry>
+                    </fields>
+                </cielo>
+								
+				<risco translate="label" module="payment">
+                    <label>Análise de Risco para Cielo Webservice</label>
+                    <sort_order>671</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </active>
+						<empresa translate="label">
+							<label>Empresa</label>
+							<!-- <comment>
+								<![CDATA[
+									<script type="text/javascript">
+										function mudaempresa(){
+											var empresa = $$('#payment_risco_empresa').last().getValue();
+											alert(empresa);
+											if(empresa == 'fcontrol'){
+												$$('#payment_risco tr').last().hide();																		
+											}else{
+												var els = $$('#payment_risco tr');
+												els[3].hide();																		
+												els[4].hide();
+											}																
+										}
+										
+										document.observe("dom:loaded", function() {
+											mudaempresa();
+											nao esta funcionando aqui
+											$$('#payment_risco_empresa').observe('click', function() {
+												alert('teste');
+												mudaempresa();
+											});
+										});
+									</script>
+								]]>
+							</comment> -->
+							<frontend_type>select</frontend_type>
+							<source_model>cielo/source_empresa</source_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</empresa>
+						<modo translate="label">
+							<label>Modo</label>
+							<frontend_type>select</frontend_type>
+							<source_model>cielo/source_modo</source_model>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</modo>
+						<usuario translate="label">
+							<label>Login do usuário</label>
+							<comment>preencha somente se tiver selecionado a empresa F-Control</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</usuario>
+						<senha translate="label">
+							<label>Senha</label>
+							<comment>preencha somente se tiver selecionado a empresa F-Control</comment>
+							<frontend_type>password</frontend_type>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</senha>
+						<codigo translate="label">
+							<label>Código de Acesso</label>
+							<comment>preencha somente se tiver selecionado a empresa Clear Sale</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</codigo>                        
+                    </fields>
+                </risco>
+            </groups>
+        </payment>
+    </sections>
+</config>

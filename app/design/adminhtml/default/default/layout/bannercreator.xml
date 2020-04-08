@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+  <bannercreator_adminhtml_bannercreator_index>
+	<reference name="content">
+	  <block type="bannercreator/adminhtml_bannercreator" name="bannercreator" />
+	</reference>
+  </bannercreator_adminhtml_bannercreator_index>
+</layout>

@@ -1,0 +1,31 @@
+{
+  "name": "sjm_parts",
+  "version": "3.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-concat": "~2.6.1",
+    "gulp-minify-css": "~1.2.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "~2.1.2"
+  },
+  "devDependencies": {
+    "gulp-sourcemaps": "^2.5.1",
+    "laravel-mix": "^5.0.4"
+  },
+"scripts": {
+    "dev": "yarn run development",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "yarn run development --watch",
+    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "yarn run production",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@codebasehq.com:18digital/desenvolvimento/sjm-parts.git"
+  },
+  "author": "18digital",
+  "license": "BSD"
+}

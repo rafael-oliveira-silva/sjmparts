@@ -1,0 +1,121 @@
+<?php
+	
+	if(!function_exists('HexToRGB')){
+		function HexToRGB($hex) {
+			$hex = str_replace("#", "", $hex);
+			$color = array();
+			 
+			if(strlen($hex) == 3) {
+			$color['r'] = hexdec(substr($hex, 0, 1) . $r);
+			$color['g'] = hexdec(substr($hex, 1, 1) . $g);
+			$color['b'] = hexdec(substr($hex, 2, 1) . $b);
+			}
+			else if(strlen($hex) == 6) {
+			$color['r'] = hexdec(substr($hex, 0, 2));
+			$color['g'] = hexdec(substr($hex, 2, 2));
+			$color['b'] = hexdec(substr($hex, 4, 2));
+			}
+			
+			return $color;
+		}
+	}
+	
+	$qvCf = Mage::getStoreConfig('quickview');
+	$loading_img = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'cmsmart/quickview/'.(@$qvCf['viewsetting']['loading_icon']?$qvCf['viewsetting']['loading_icon']:'default/ajax_loader.gif');
+
+	$currentUrl =  Mage::helper("core/url")->getCurrentUrl();
+	$url = $this->getUrl();
+	//if (strpos($currentUrl,'index.php') === false) $url = str_replace('index.php/', '', $url);
+	$pHeight  = (int) @$qvCf['imagesetting']['thumbnail_image_height'];
+	$imgWidth  = (int) @$qvCf['imagesetting']['product_image_width'];
+?>
+<script type="text/javascript">
+//<![CDATA[
+	if (typeof CMSMART == 'undefined') CMSMART = {};
+	CMSMART.QuickView = {
+		BASE_URL : "<?php echo $url?>",
+		CENTER : <?php echo (!trim(@$qvCf['viewsetting']['position']) || trim(@$qvCf['viewsetting']['position']) == 'auto')?'true':'false'; ?>,
+		BOTTON_LABEL : "<?php echo @$qvCf['buttonsetting']['button_label']; ?>",
+		BUTTON_CONFIG: {
+			productlistClassArr :['<?php echo implode("','", explode(',', @$qvCf['buttonsetting']['block_class'])); ?>'], 
+			aClass : ['<?php echo implode("','", explode(',', @$qvCf['buttonsetting']['aclass'])); ?>'], 
+			imgClass: ['<?php echo implode("','", explode(',', @$qvCf['buttonsetting']['imgclass'])); ?>']
+		}
+	};
+//]]
+jQuery( document ).ready(function() {
+	if( typeof installquickview != 'undefined' ) installquickview(CMSMART.QuickView.BUTTON_CONFIG);
+});
+
+jQuery(document).ajaxComplete(function() {
+	if( typeof installquickview != 'undefined' ) installquickview(CMSMART.QuickView.BUTTON_CONFIG);
+});	
+</script>
+
+<style type="text/css">
+
+#csmm_quickform  {
+	background-color:rgba(<?php echo implode(',', HexToRGB(@$qvCf['viewsetting']['background_color'])); ?>, <?php echo (float) @$qvCf['viewsetting']['opacity']; ?>);
+}
+
+#csmm_quickform #quickviewshow {
+	width:<?php echo (int) @$qvCf['viewsetting']['quickview_width']; ?>px; height: <?php echo @$qvCf['viewsetting']['quickview_height']; ?>px; background:#FFF; border: 1px solid #CCC;
+    border: 5px solid #<?php echo @$qvCf['viewsetting']['border_color']; ?>;
+	margin: <?php echo trim(@$qvCf['viewsetting']['position']); ?>;
+}
+
+
+#csmm_quickform .quickviewloading {
+   background: url("<?php echo $loading_img; ?>") no-repeat scroll 0 0 transparent;
+}
+
+#csmm_quickform #cmsmart_quickview_button_close {
+	background: url("<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA); ?>cmsmart/quickview/fancy_close.png") no-repeat scroll 0 0 transparent;
+}
+<?php
+$down = 10;
+if(@$qvCf['viewsetting']['enablefooter']) $down = 65; ?>
+
+
+a.highlight { border-bottom-width: 0px; }
+
+div.quickview_footer{ text-align: left; }
+
+
+#csmm_quickform .product-quickview {
+	height:<?php echo @$qvCf['viewsetting']['quickview_height'] - $down; ?>px;
+}
+
+
+/**
+ *  Horizontal Buttons
+ */
+.jcarousel-skin-tango .jcarousel-next-horizontal {
+	top: <?php echo (int)($pHeight/2); ?>px;
+    background: transparent url(<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA); ?>cmsmart/quickview/next-horizontal.png) no-repeat 0 0;
+}
+
+.jcarousel-skin-tango .jcarousel-direction-rtl .jcarousel-next-horizontal {
+    background-image: url(<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA); ?>cmsmart/quickview/prev-horizontal.png);
+}
+
+.jcarousel-skin-tango .jcarousel-prev-horizontal {
+	top: <?php echo (int)($pHeight/2); ?>px;
+    background: transparent url(<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA); ?>cmsmart/quickview/prev-horizontal.png) no-repeat 0 0;
+}
+
+/**
+ *  Vertical Buttons
+ */
+.jcarousel-skin-tango .jcarousel-next-vertical {
+    background: transparent url(<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA); ?>cmsmart/next-vertical.png) no-repeat 0 0;
+}
+
+
+.jcarousel-skin-tango .jcarousel-prev-vertical {
+    background: transparent url(<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA); ?>cmsmart/quickview/prev-vertical.png) no-repeat 0 0;
+}
+
+
+/* end slide */
+</style>

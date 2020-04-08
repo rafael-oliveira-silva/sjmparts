@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Short description
+ *
+ * Long description
+ *
+ * Baseado no módulo original Cushy_Boleto de Renan Gonçalves <renan.saddam@gmail.com>
+ * Copyright 2012, Rafael Camargo <desbloqueio@terra.com.br>
+ * Licensed under The MIT License
+ * Redistributions of files must retain the copyright notice.
+ *
+ * @copyright       Copyright 2012, Rafael Camargo 
+ * @category        Boleto_Rafael
+ * @package         RafaelCamargo_Boleto
+ * @license         http://www.opensource.org/licenses/mit-license.php The MIT License
+ */ 
+-->
+<config>
+	<modules>
+		<RafaelCamargo_Boleto>
+			<version>1.0.0</version>
+			<depends>
+				<Mage_Payment />
+			</depends>
+		</RafaelCamargo_Boleto>
+	</modules>
+	<global>
+		<blocks>
+			<boleto>
+				<class>RafaelCamargo_Boleto_Block</class>
+			</boleto>
+		</blocks>
+		<models>
+			<boleto>
+				<class>RafaelCamargo_Boleto_Model</class>
+			</boleto>
+		</models>
+		<helpers>
+			<boleto>
+				<class>RafaelCamargo_Boleto_Helper</class>
+			</boleto>
+		</helpers>
+		<resources>
+			<connection>
+				<use>core_setup</use>
+			</connection>
+		</resources>
+		<template>
+			<email>
+				<payment_boleto_bancario_warning_email_template translate="label" module="boleto">
+					<label>Warning Email</label>
+					<file>sales/warning_email.html</file>
+					<type>html</type>
+				</payment_boleto_bancario_warning_email_template>
+			</email>
+			<email>
+				<payment_boleto_bancario_notify_orders_template translate="label" module="boleto">
+					<label>Notify Orders</label>
+					<file>sales/notify_orders.html</file>
+					<type>html</type>
+				</payment_boleto_bancario_notify_orders_template>
+			</email>
+		</template>
+		<events>
+			<sales_order_place_after>
+				<observers>
+					<boleto_change_order_status>
+						<type>singleton</type>
+						<class>boleto/observer</class>
+						<method>changeOrderStatus</method>
+					</boleto_change_order_status>
+				</observers>
+			</sales_order_place_after>
+		</events>
+	</global>
+	<frontend>
+		<routers>
+			<boleto>
+				<use>standard</use>
+				<args>
+					<module>RafaelCamargo_Boleto</module>
+					<frontName>boleto</frontName>
+				</args>
+			</boleto>
+		</routers>
+		<translate>
+			<modules>
+				<boleto>
+					<files>
+						<default>RafaelCamargo_Boleto.csv</default>
+					</files>
+				</boleto>
+			</modules>
+		</translate>
+	</frontend>
+	<adminhtml>
+		<translate>
+			<modules>
+				<boleto>
+					<files>
+						<default>RafaelCamargo_Boleto.csv</default>
+					</files>
+				</boleto>
+			</modules>
+		</translate>
+	</adminhtml>
+	<default>
+		<payment>
+			<boleto_bancario>
+				<active>0</active>
+				<model>RafaelCamargo_Boleto_Model_standard</model>
+				<banconome>santander_banespa</banconome>
+				<title>Boleto Bancário</title>
+				<vencimento>5</vencimento>
+				<instrucoes_boleto>- Não receber após vencimento.
+- Não receber pagamento em cheque.
+</instrucoes_boleto>
+			    <informacoes>- Pagamento do pedido efetuado na loja XXXXXX.
+- Nº do pedido: #%s, para maiores detalhes e 2ª via do boleto acesse o histórico do seu pedido.
+- Em 2 (dois) dias seu pagamento será automaticamente acusado pelo nosso sistema.</informacoes>
+                <especie>R$</especie>
+				<aceite>N</aceite>
+				<valor_adicional>0</valor_adicional>
+			</boleto_bancario>
+		</payment>		
+	</default>
+	<crontab>
+		<jobs>
+			<rafaelcamargo_notify_billets>
+				<schedule>
+					<cron_expr>00 04 * * *</cron_expr>
+				</schedule>
+				<run>
+					<model>boleto/control::notifyOrders</model>
+				</run>
+			</rafaelcamargo_notify_billets>
+			<rafaelcamargo_auto_expire_orders>
+				<schedule>
+					<cron_expr>05 04 * * *</cron_expr>
+				</schedule>
+				<run>
+					<model>boleto/control::expireOrders</model>
+				</run>
+			</rafaelcamargo_auto_expire_orders>
+			<rafaelcamargo_notify_expired_billets>
+				<schedule>
+					<cron_expr>10 04 * * *</cron_expr>
+				</schedule>
+				<run>
+					<model>boleto/control::notifyExpiredOrders</model>
+				</run>
+			</rafaelcamargo_notify_expired_billets>
+			<rafaelcamargo_cancel_orders>
+				<schedule>
+					<cron_expr>15 04 * * *</cron_expr>
+				</schedule>
+				<run>
+					<model>boleto/control::cancelOrders</model>
+				</run>
+			</rafaelcamargo_cancel_orders>
+		</jobs>
+	</crontab>
+</config>

@@ -1,0 +1,32 @@
+/*Pre header*/
+.pre-header .assistencia{ float: left; background-image: url(../images/assistencia_tecnica_icon.png); background-repeat: no-repeat; background-position-x: left; background-position-y: center; }
+
+/*Header*/
+.header .form-search button.button{ height: 35px; padding-top: 4px; width: auto; }
+
+/*Catalog: Product View*/
+.add-to-cart button.button{ height: auto; }
+.add-to-cart button.button span{ background-image: url(../images/buy_btn_bg.jpg); background-position-x: top; background-position-y: center; background-repeat: repeat-x; }
+
+/*Checkout*/
+.checkout-cart-index .button{ width: 185px; }
+.button.btn-checkout span{ background-image: url(../images/buy_checkout_btn_bg.jpg); background-repeat: no-repeat; background-position-x: left; background-position-y: center; }
+.button.btn-checkout span span{ background-image: none; width: auto; }
+.cart .discount{ width: 290px; }
+.cart .discount .buttons-set button.button{ width: 120px; }
+.cart .shipping{ width: 360px; }
+
+/*Login*/
+.block-login .actions{ height: 35px; }
+.block-login .actions button.button{ width: 97px; }
+
+/*Footer*/
+.footer .footer-block.first{ padding-top: 0px; }
+.footer .footer-block{ padding-top: 10px; }
+.footer .block-subscribe{ width: 308px; }
+.footer-block .certificados{ margin-left: 29px; }
+.footer-block .payment-methods{ width: 225px; }
+.footer-links ul li{ padding-left: 0px; }
+.block-subscribe .actions{ margin-top: 0px; }
+.block-subscribe .actions button.button{ margin-top: -1px; }
+.col-right.sidebar .block-subscribe .actions button.button span{width: 140px !important;}

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Cmsmart_Ajaxsearch>
+            <!-- <active>true</active>
+            <codePool>local</codePool> -->
+            <active>false</active>
+            <codePool>community</codePool>
+        </Cmsmart_Ajaxsearch>
+    </modules>
+</config> 

@@ -1,0 +1,31 @@
+<?php
+	$ajaxcart = Mage::getStoreConfig('ajaxcart/viewsetting');
+	//print_r($ajaxcart);
+	$w = (int)$ajaxcart['imagewidth']; $w = $w > 0? $w:50;
+	$h = (int)$ajaxcart['imageheight']; $h = $h > 0? $h:50;
+	
+    $_item = $this->getItem();
+    $isVisibleProduct = $_item->getProduct()->isVisibleInSiteVisibility();
+    $canApplyMsrp = Mage::helper('catalog')->canApplyMsrp($_item->getProduct(), Mage_Catalog_Model_Product_Attribute_Source_Msrp_Type::TYPE_BEFORE_ORDER_CONFIRM);
+	$urlbase = Mage::getBaseUrl();
+	//$urlajax = $this->getUrl('ajaxcart/index/index/');
+	$urlajax = $this->getBaseUrl().'ajaxcart/index/index/';
+	
+	if(false){
+		//include('options.phtml');
+	}else{
+	
+?>
+<li class="item">
+    <?php if ($this->hasProductUrl()): ?>
+        <a href="<?php echo $this->getProductUrl()?>" title="<?php echo $this->htmlEscape($this->getProductName()) ?>" class="product-image"><img src="<?php echo $this->getProductThumbnail()->resize($w, $h)->setWatermarkSize('30x10'); ?>" width="<?php echo $w ?>" height="<?php echo $h ?>" alt="<?php echo $this->htmlEscape($this->getProductName()) ?>" /></a>
+    <?php else: ?>
+        <span class="product-image"><img src="<?php echo $this->getProductThumbnail()->resize($w, $h)->setWatermarkSize('30x10'); ?>" width="<?php echo $w ?>" height="<?php echo $h ?>" alt="<?php echo $this->htmlEscape($this->getProductName()) ?>" /></span>
+    <?php endif; ?>
+    <div class="product-details">
+    <?php //echo $this->getDeleteUrl(); ?>
+		<a href="<?php echo $urlajax.'delete/'.$this->getItem()->getId(); ?>" title="<?php echo $this->__('Remove This Item') ?>" class="btn-remove ajrmbt"><?php echo $this->__('Remove This Item') ?></a>
+        <p class="product-name"><?php if ($this->hasProductUrl()): ?><a href="<?php echo $this->getProductUrl() ?>"><?php endif; ?><?php echo $this->htmlEscape($this->getProductName()) ?><?php if ($this->hasProductUrl()): ?></a><?php endif; ?></p>
+    </div>
+</li>
+<?php } ?>

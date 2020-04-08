@@ -1,0 +1,63 @@
+<?php
+/**
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ *
+ * @category   payment
+ * @package    Multikomerce_Redecard
+ * @copyright  Copyright (c) 2011 MagentoNet (www.magento.net.br)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author     MagentoNet <contato@magento.net.br>
+ */
+
+?>
+<?php if($_info = $this->getInfo()): ?>
+    <?php
+        $flag = NULL;
+
+        switch( $this->getInfo()->getData('cc_type') ){
+            case 'VI':
+                $flag = 'Visa';
+                break;
+            case 'MC':
+                $flag = 'Mastercard';
+                break;
+            case 'DC':
+                $flag = 'Diners Club';
+                break;
+        }
+
+        $additionaldata = unserialize($this->getInfo()->getData('additional_data'));
+
+        $parcelas = NULL;
+        if( isset($additionaldata['autorizacao']) && isset($additionaldata['autorizacao']['cc_parcelas']) ) $parcelas = $additionaldata['autorizacao']['cc_parcelas'];
+        elseif( isset($additionaldata['Cc_parcelas']) ) $parcelas = $additionaldata["Cc_parcelas"];
+
+        if( $parcelas == 0 ) $parcelas += 1;
+
+        // if( isset($_GET['token']) ){
+        //     Zend_Debug::dump($additionaldata);
+        //     exit;
+        // }
+    ?>
+    <?php echo $this->__('Nome no cartão: %s', $this->htmlEscape($this->getInfo()->getCcOwner())) ?><br/>
+    <?php echo $this->__('Bandeira: %s', $flag) ?><br />
+    <?php echo $this->__('Últimos quatro números do cartão: **** **** **** %s', $this->htmlEscape($this->getInfo()->getCcLast4())) ?><br/>
+    <?php echo $this->__('Data de expiração: %s/%s', $this->htmlEscape($this->getInfo()->getCcExpMonth()), $this->htmlEscape($this->getInfo()->getCcExpYear())) ?><br />
+    <?php echo $this->__('Número de Parcelas: %s', $parcelas) ?><br />
+    <?php if( isset($additionaldata['autorizacao']) && isset($additionaldata['autorizacao']['numsqn']) ): ?>
+        Número SQN (identificação do pedido): <?php echo $additionaldata['autorizacao']['numsqn'] ?><br />
+    <?php endif ?>
+    <!-- <br><a href="/komerci/Pay/estorno/idorder/">Estornar pagamento</a> -->
+    <?php //$adddata = unserialize($this->getInfo()->getData('additional_data')); ?>
+    <?php if( $additionaldata["autorizacao"]['codigo'] == 0 ): ?>
+        <span style="color: #056840; font-weight: bold"><?php echo $this->__('Código e mensagem da transação: %s - %s', $additionaldata["autorizacao"]['codigo'], utf8_encode(urldecode($additionaldata["autorizacao"]['mensagem']))) ?></span>
+    <?php else: ?>
+        <span style="color: #FF0400; font-weight: bold"><?php echo $this->__('Código e mensagem da transação: %s - %s', $additionaldata["autorizacao"]['codigo'], utf8_encode(urldecode($additionaldata["autorizacao"]['mensagem']))) ?></span>
+    <?php endif ?>
+<?php else: ?>
+<?php endif; ?>

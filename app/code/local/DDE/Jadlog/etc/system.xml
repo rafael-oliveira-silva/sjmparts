@@ -1,0 +1,158 @@
+<?xml version="1.0"?>
+<config>
+	<sections>
+		<carriers>
+			<groups>
+				<jadlogmethod translate="label" module="shipping">
+					<label>Transportadora JadLog</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>1</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<active translate="label">
+							<label>Enabled</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>0</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment><![CDATA[Enable/Disable shipping method]]></comment>
+						</active>
+						<title translate="label">
+							<label>Title</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_webstore>1</show_in_webstore>
+							<comment><![CDATA[Insert shipping method title]]></comment>
+						</title>
+						<webservice_url translate="label">
+							<label>Webservice (URL)</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment><![CDATA[Insert Jadlog webservice URL]]></comment>
+						</webservice_url>
+						<conta_corrente translate="label">
+							<label>Conta Corrente</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment><![CDATA[Your account at Jadlog (numbers only)]]></comment>
+						</conta_corrente>
+						<senha_acesso translate="title">
+							<label>Senha de Acesso</label>
+							<frontend_type>password</frontend_type>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment><![CDATA[Jadlog account password]]></comment>
+						</senha_acesso>
+						<modalidade translate="label source_model">
+							<label>Modalidade(s)</label>
+							<frontend_type>multiselect</frontend_type>
+							<source_model>DDE_Jadlog_Model_Source_Modalidades</source_model>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment><![CDATA[Delivery method]]></comment>
+						</modalidade>
+						<free_method translate="label source_model">
+							<label>Modalidade para Frete Gratuito</label>
+							<frontend_type>select</frontend_type>
+							<source_model>DDE_Jadlog_Model_Source_Modalidades</source_model>
+							<sort_order>55</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment><![CDATA[Free delivery method]]></comment>
+						</free_method>
+						<seguro translate="label">
+							<label>Tipo de Seguro</label>
+							<frontend_type>select</frontend_type>
+							<source_model>DDE_Jadlog_Model_Source_Seguros</source_model>
+							<sort_order>60</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment><![CDATA[Choose insurance type]]></comment>
+						</seguro>
+						<extra_delay translate="label">
+							<label>Tempo extra de entrega</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>65</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment><![CDATA[O tempo extra aqui informado será adicionado a estimativa de entrega fornecido pelo webservice da transportadora]]></comment>
+						</extra_delay>
+						<valor_coleta translate="label">
+							<label>Valor da Coleta</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>70</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment><![CDATA[Handling fee (Ex.: 2,50)]]></comment>
+						</valor_coleta>
+						<valor_adicional translate="label">
+							<label>Valor Adicional (%)</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>75</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment><![CDATA[Obs.: Colocar o valor em porcentagem (Ex.: 10%)]]></comment>
+						</valor_adicional>
+						<cnpj_empresa translate="label">
+							<label>CNPJ da empresa</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>80</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment><![CDATA[CNPJ number]]></comment>
+						</cnpj_empresa>
+						<sallowspecific translate="label">
+                            <label>Ship to applicable countries</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>90</sort_order>
+                            <frontend_class>shipping-applicable-country</frontend_class>
+                            <source_model>adminhtml/system_config_source_shipping_allspecificcountries</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sallowspecific>
+                        <specificcountry translate="label">
+                            <label>Ship to Specific countries</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <sort_order>91</sort_order>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </specificcountry>
+						<sort_order translate="label">
+							<label>Ordenar por</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>100</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</sort_order>
+					</fields>
+				</jadlogmethod>
+			</groups>
+		</carriers>
+	</sections>
+</config>

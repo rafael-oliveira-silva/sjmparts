@@ -1,0 +1,131 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+    ini_set('display_errors', TRUE);
+	$categoryId = 96;
+
+	$entities_id = array();
+	$category = Mage::getModel('catalog/category')->load($categoryId);
+
+    $_products = Mage::getModel('catalog/product')
+                ->getCollection()
+                ->addCategoryFilter($category)
+                ->load();
+
+	foreach($_products->getData() as $product){
+		$entities_id[] = $product['entity_id'];
+	}
+
+    $products = Mage::getModel('catalog/product')
+				->getCollection()
+				->addAttributeToSelect('*')
+				->addAttributeToFilter(
+					'entity_id',
+					array('in' => $entities_id)
+				)
+				->addAttributeToFilter('status', array('eq' => Mage_Catalog_Model_Product_Status::STATUS_ENABLED));
+
+	$count = 1;
+
+	$cieloHelper = Mage::helper('cielo');
+?>
+<?php if($products): ?>
+<div class="block block-related">
+    <div class="block-title text-center">
+        <strong><span>Perfumaria e Acessórios</span></strong>
+    </div>
+	<div class="block-content">
+		<ol class="mini-products-list" id="block-related">
+		<?php foreach($products as $_item): ?>
+			<?php if ($_item->isAvailable()): ?>
+				<?php if($count > 5) continue ?>
+				<li class="item">
+					<div class="product">
+						<a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_item->getName()) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(90) ?>" alt="<?php echo $this->htmlEscape($_item->getName()) ?>" /></a>
+						<p class="product-name">
+							<a href="<?php echo $_item->getProductUrl() ?>">
+								<?php if(strlen(($this->htmlEscape($_item->getName()))) > 43): ?>
+									<?php echo substr($this->htmlEscape($_item->getName()), 0, 40).'...' ?>
+								<?php else:?>
+									<?php echo $_item->getName();?>
+								<?php endif ?>
+							</a>
+						</p>
+						<div class="product-details">
+							<div class="clear"></div>
+							<?php echo Mage_Catalog_Block_Product::getPriceHtml($_item, true) ?>
+							<?php echo $cieloHelper->getParcelamentoHtml($_item->getFinalPrice()) ?>
+							<a href="<?php echo Mage::helper('checkout/cart')->getAddUrl($_item) ?>" class="link-cart">
+								<?php echo $this->__('Add to Cart') ?>
+							</a>
+						</div>
+					</div>
+				</li>
+				<?php $count++ ?>
+			<?php endif ?>
+		<?php endforeach ?>
+		</ol>
+		<script type="text/javascript">decorateList('block-related', 'none-recursive')</script>
+	</div>
+	<script type="text/javascript">
+	//<![CDATA[
+	$$('.related-checkbox').each(function(elem){
+		Event.observe(elem, 'click', addRelatedToProduct)
+	});
+
+	var relatedProductsCheckFlag = false;
+	function selectAllRelated(txt){
+		if (relatedProductsCheckFlag == false) {
+			$$('.related-checkbox').each(function(elem){
+				elem.checked = true;
+			});
+			relatedProductsCheckFlag = true;
+			txt.innerHTML="<?php echo $this->__('unselect all') ?>";
+		} else {
+			$$('.related-checkbox').each(function(elem){
+				elem.checked = false;
+			});
+			relatedProductsCheckFlag = false;
+			txt.innerHTML="<?php echo $this->__('select all') ?>";
+		}
+		addRelatedToProduct();
+	}
+
+	function addRelatedToProduct(){
+		var checkboxes = $$('.related-checkbox');
+		var values = [];
+		for(var i=0;i<checkboxes.length;i++){
+			if(checkboxes[i].checked) values.push(checkboxes[i].value);
+		}
+		if($('related-products-field')){
+			$('related-products-field').value = values.join(',');
+		}
+	}
+	//]]>
+	</script>
+</div>
+<?php endif ?>

@@ -1,0 +1,8 @@
+.grid-full li{
+	float: left !important;
+	display: inline !important;
+	width:9% !important;
+}
+
+.grid-full > li > a{width:100%;}
+.grid-full > li > a > span{font-size? 12px;}

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category    Cmsmart
+ * @package     Cmsmart_QuickView
+ * @copyright   Copyright (c) 2013 Cmsmart.
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <Cmsmart_QuickView>
+            <version>1.0</version>
+        </Cmsmart_QuickView>
+    </modules>
+	
+    <global>
+        <blocks>
+            <cmsmquickview>
+                <class>Cmsmart_QuickView_Block</class>
+            </cmsmquickview>
+        </blocks>
+	
+        <helpers>
+            <cmsmquickview>
+                <class>Cmsmart_QuickView_Helper</class>
+            </cmsmquickview>
+			<quickview>
+                <class>Cmsmart_QuickView_Helper</class>
+            </quickview>
+        </helpers>
+
+        <models>
+            <cmsmquickview>
+                <class>Cmsmart_QuickView_Model</class>
+            </cmsmquickview>
+        </models>
+        <rewrite>
+            <cmsmart_cmsmquickview>
+               <from><![CDATA[#^/checkout/cart/#]]></from>
+               <to>/cmsmquickview/cart/</to>
+            </cmsmart_cmsmquickview>
+        </rewrite>
+
+    </global>
+
+    <adminhtml> 	
+		<translate>
+            <modules>
+                <Cmsmart_Quickview>
+                    <files>
+                        <default>Cmsmart_Quickview.csv</default>
+                    </files>
+                </Cmsmart_Quickview>
+            </modules>
+        </translate>
+		
+		<layout>
+			<updates>
+				<quickview>
+					<file>cmsmart_quickview.xml</file>
+				</quickview>
+			</updates>
+		</layout>
+		
+		<acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+										<quickview translate="title" module="cmsmquickview">
+											<title>Quick View Settings</title>
+											<sort_order>50</sort_order>
+										</quickview>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml> 
+
+    <frontend>
+        <routers>
+            <quickview>
+                <use>standard</use>
+                <args>
+                    <module>Cmsmart_QuickView</module>
+                    <frontName>cmsmquickview</frontName>
+                </args>
+            </quickview>
+        </routers>
+        <layout>
+            <updates>
+                <quickview>
+                    <file>cmsmart/cmsmart_quickview.xml</file>
+                </quickview>
+            </updates>
+        </layout>
+    </frontend>
+
+    <default>
+        <quickview>
+			<viewsetting>
+				<enableview>1</enableview>
+				<usejquery>1</usejquery>
+				<enableaddtocart>1</enableaddtocart>
+				<enabledetail>1</enabledetail>
+				<enablereview>1</enablereview>
+				<enablefooter>1</enablefooter>
+                <quickview_width>800</quickview_width>
+                <quickview_height>500</quickview_height>		
+                <position>right</position>
+                <background_color>000000</background_color>
+                <border_color>555555</border_color>
+                <position>auto</position>
+                <opacity>0.85</opacity>
+                <loading_icon>ajax_loader_og.gif</loading_icon>
+            </viewsetting>
+			
+			<buttonsetting>
+                <block_class>.category-products .item</block_class>
+                <aclass>a</aclass>                
+				<imgclass>img</imgclass>	
+                <button_label>Quick View</button_label>			
+			</buttonsetting>
+			
+			<imagesetting>
+                <product_image_width>300</product_image_width>
+                <product_image_height>300</product_image_height>                
+				<thumbnail_image_width>60</thumbnail_image_width>
+                <thumbnail_image_height>60</thumbnail_image_height>
+                <enablezoom>1</enablezoom>
+			</imagesetting>
+			
+        </quickview>
+    </default>
+
+</config>

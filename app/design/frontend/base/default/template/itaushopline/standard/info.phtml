@@ -1,0 +1,21 @@
+<?php
+/**
+ * Trezo Itaushopline Payment Method
+ *
+ * @category   Trezo
+ * @package    Trezo_Itaushopline
+ * @author     André Felipe <contato@trezo.com.br>
+ *
+ */
+?>
+
+<div class="panel-info-itaushopline-boleto">
+    <p><?php echo $this->escapeHtml($this->getMethod()->getTitle()) ?></p>
+    <?php if ($this->getOrder()): ?>
+        <p>
+            <a target="_blank" href="<?php echo $this->getBoletoUrl() ?>">
+                Clique aqui para imprimir o boleto
+            </a>
+        </p>
+    <?php endif; ?>
+</div>

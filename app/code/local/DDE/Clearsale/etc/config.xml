@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * 18digital
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the GNU General Public License (GPL 3.0)
+ * that is bundled with this package in the file LICENSE_GPL.txt
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/gpl-3.0.html
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to suporte@18digital.com.br so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * You can edit, copy, distribute and change this file, however, no information
+ * about it's author, company, owner or any legal information can be changed,
+ * erase or edited in no circumstances.
+ *
+ * @category      DDE
+ * @package       DDE_Clearsale
+ * @author		  Samir J M Araujo
+ * @authorEmail   samir.araujo@18digital.com.br
+ * @company	 	  18digital
+ * @copyright     Copyright (c) 2013 18digital (http://18digital.com.br)
+ * @version		  1.0.0
+ * @license       GPL-3.0  GNU General Public License (GPL 3.0)
+ * @licenseUrl    http://opensource.org/licenses/gpl-3.0.html
+ */
+-->
+<config>
+	<modules>
+		<DDE_Clearsale>
+			<version>1.0.0</version>
+		</DDE_Clearsale>
+	</modules>
+	<global>
+		<helpers>
+			<clearsale>
+				<class>DDE_Clearsale_Helper</class>
+			</clearsale>
+		</helpers>
+		<models>
+			<clearsale>
+				<class>DDE_Clearsale_Model</class>
+			</clearsale>
+		</models>
+		<!--<events>
+			<sales_model_service_quote_submit_success>
+				<observers>
+					<dde_clearsale_sendorder>
+						<type>singleton</type>
+						<class>clearsale/observer</class>
+						<method>sendOrder</method>
+					</dde_clearsale_sendorder>
+				</observers>
+			</sales_model_service_quote_submit_success>
+		</events>-->
+	</global>
+	<frontend>
+		<routers>
+			<clearsale>
+				<use>standard</use>
+				<args>
+					<module>DDE_Clearsale</module>
+					<frontName>clearsale</frontName>
+				</args>
+			</clearsale>
+		</routers>
+	</frontend>
+	<stores>
+		<admin>
+			<design>
+				<package>
+					<name>default</name>
+				</package>
+				<theme>
+					<default>miltfort</default>
+				</theme>
+			</design>
+		</admin>
+	</stores>
+</config>

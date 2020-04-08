@@ -1,0 +1,42 @@
+<?php
+/**
+ * Trezo Cielo Payment Method
+ *
+ * @category   Trezo
+ * @package    Trezo_Cielo
+ * @author     André Felipe <contato@trezo.com.br>
+ *
+ */
+
+$info = $this->getInfo();
+$helper = $this->helper('trezo_cielo');
+?>
+<div class="panel-info-cielo-cc">
+	<p><?php echo $this->escapeHtml($this->getMethod()->getTitle()) ?></p>
+    <p><?php echo $helper->__('Card Owner: %s', $info->getCcOwner()) ?></p>
+    <p><?php echo $helper->__('Card Type: %s', $this->getCcTypeName()) ?></p>
+	<p><?php echo $helper->__('Card Last 4 Digits: ************%s', $info->getCcLast4()) ?></p>
+    <p><?php echo $helper->__('Exp Date: %s', $this->getExpDateFormatted()) ?></p>
+	<p><?php echo $helper->__('Card Installments: %sx', $info->getAdditionalInformation('cc_installments')) ?></p>
+	<p><?php echo $helper->__('Autorization Code: %s', $info->getAdditionalInformation('autorization_code')) ?></p>
+    <p><?php echo $helper->__('Transaction Identifier: %s', $info->getAdditionalInformation('tid')) ?></p>
+    <?php
+        $queryOrder = Mage::getModel('trezo_cielo/cielo_queryTransaction', $info->getOrder()->getPayment())->getResponseTransaction();
+        $data = json_decode(json_encode($queryOrder), true);
+        $status = null;
+        $statusLabel = '';
+        $statusColor = '#000';
+        
+        if (isset($data['payment']) && isset($data['payment']['status'])) {
+            $status = $data['payment']['status'];
+            $statusLabel = $this->helper('trezo_cielo')->getStatusLabel($status);
+            $statusColor = $this->helper('trezo_cielo')->getStatusLabelColor($status);
+        }
+    ?>
+
+    <?php if (!empty($status)): ?>
+        <p>Status: <strong style="color: <?php echo $statusColor; ?>"><?php echo $statusLabel; ?></strong></p>
+    <?php endif; ?>
+    <p><?php echo $helper->__('Payment Id: %s', $info->getAdditionalInformation('payment_id')) ?></p>
+    <p><a href="#" onclick="popWin('<?php echo Mage::helper("adminhtml")->getUrl('adminhtml/cielo/index', array('order_id' => $info->getOrder()->getId(), '_secure' => Mage::app()->getFrontController()->getRequest()->isSecure() ? true : false )) ?>', 'Cielo Information', 'width=650,height=700,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes'); return false;"><?php echo $helper->__('Check Information in Cielo') ?></a></p>
+</div>

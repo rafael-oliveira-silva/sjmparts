@@ -1,0 +1,26 @@
+<?php
+/**
+ * Trezo Cielo Payment Method
+ *
+ * @category   Trezo
+ * @package    Trezo_Cielo
+ * @author     Bruno Roeder <contato@trezo.com.br>
+ *
+ */
+?>
+<?php $transferBlockId = $this->getUniIdTransferBlock(); ?>
+<?php $_code=$this->getMethodCode() ?>
+<ul class="form-list cielop-bankslip-payment-icons" id="payment_form_<?php echo $this->getMethodCode() ?>" style="display:none;">
+    <li>
+        <?php /* transfer block uniq id field */?>
+        <input type="hidden" id="<?php echo $_code ?>_transfer_block_uniq_id" name="payment[tranfer_block_uniq_id]" value="<?php echo $this->escapeHtml($transferBlockId) ?>" />
+    </li>
+    <?php if ($instructions = $this->getInstructions()) : ?>
+            <li>
+                <div class="<?php echo $this->getMethodCode() ?>-instructions-content agreement-content">
+                    <?php echo nl2br($instructions) ?>
+                </div>
+            </li>
+    <?php endif; ?>
+</ul>
+

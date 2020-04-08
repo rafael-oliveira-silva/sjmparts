@@ -1,0 +1,114 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Product list template
+ *
+ * @see Mage_Catalog_Block_Product_List
+ */
+?>
+<?php
+    $_productCollection = $this->getLoadedProductCollection();
+    $_helper    		= $this->helper('catalog/output');
+	$_pagseguro 		= $this->helper('pagseguro');
+	$_cielo				= $this->helper('cielo');
+	$_customer  		= $this->helper('customer');
+	$_customerGroupId	= NULL;
+?>
+<div class="category-products featured row">
+    <?php // Grid Mode ?>
+		<?php //$_cats = array( 3, 4, 5, 31 ) ?>
+		<?php $_cats = array( 83, 84, 85, 86 ) ?>
+		<?php $_counter = 1 ?>
+		<?php $_total = count( $_cats ) ?>
+		<?php foreach( $_cats as $_cat ): ?>
+			<?php $_first = $_counter == 1 ? ' first' : '' ?>
+			<?php $_last = $_counter == $_total ? ' last' : '' ?>
+			<?php $_category = Mage::getModel('catalog/category')->load($_cat) ?>
+			<div class="featured-category-block<?php echo $_first.$_last ?> col-xs-12">
+				<div class="featured-title row">
+					<div class="col-xs-12">
+						<p class="featured-category-title pull-left"><?php echo $_category->getName() ?></p>
+						<a class="pull-right see-more" href="<?php echo $_category->getUrl() ?>" class="see-category">Veja mais <?php echo $_category->getName() ?></a>
+					</div>
+				</div>
+				<ul class="products-grid row">
+					<?php $_products = $_category->getProductCollection()->addAttributeToSelect('*') ?>
+					<?php $_counter2 = 1 ?>
+					<?php $_total2 = count($_products) ?>
+					<?php foreach( $_products as $_product ): ?>
+						<?php if( $_counter2 == 3 ): ?>
+							<?php  echo ($this->getLayout()->createBlock('cms/block')->setBlockId('block-row-2')->toHtml()); ?>
+						<?php endif ?>
+						<?php if( $_counter2 >= 5 ) break ?>
+						<?php if($_product->getVisibility() == 1 || $_product->getVisibility() == 3) continue ?>
+						<?php $_first2 = $_counter2 == 1 ? ' first' : '' ?>
+						<?php $_last2 = $_counter2 == $_total2 || $_counter2 == 4 ? ' last' : '' ?>
+						<li class="col-xs-3 item<?php echo $_first2.$_last2 ?>">
+							<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
+								<img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(185,210); ?>" width="185" height="210" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+							</a>
+							<?php if( $_customer->isLoggedIn() ): ?>
+								<?php $customer = $_customer->getCustomer() ?>
+								<?php $_customerGroupId = $customer->getGroupId() ?>
+							<?php endif ?>
+							
+							<?php if( $_customerGroupId != 3 ): ?>
+								<?php echo str_replace('R$ ', 'R$', $this->getPriceHtml($_product, true)) ?>
+								<?php //@TODO: Assign rule to price.phtml ?>
+								<?php if( $_product->getFinalPrice() >= 800 ): ?>
+									<?php echo $_pagseguro->getParcelamentoHtml($_product->getFinalPrice()) ?>
+								<?php endif ?>
+							<?php endif ?>
+							<h2 class="product-name">
+								<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>">
+									<?php if(strlen($_helper->productAttribute($_product, $_product->getName(), 'name')) > 79): ?>
+										<?php echo substr($_helper->productAttribute($_product, $_product->getName(), 'name'), 0, 79).'...' ?>
+									<?php else: ?>
+										<?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
+									<?php endif; ?>
+								</a>
+							</h2>
+							<?php if($_product->isSaleable()): ?>
+								<button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+							<?php else: ?>
+								<p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+							<?php endif; ?>
+							<button type="button" title="<?php echo $this->__('Details') ?>" class="button btn-details" onclick="setLocation('<?php echo $_product->getProductUrl() ?>')"><span><span><?php echo $this->__('Details') ?></span></span></button>
+							<div class="label-product">             
+								<?php if($_product->getData('new')){echo '<span class="new">'.$this->__('New').'</span>';  }?>
+								<?php if($_product->getData('sale')){echo '<span class="sale">'.$this->__('Sale').'</span>';  }?>
+							</div>
+						</li>
+						<?php $_counter2++ ?>
+					<?php endforeach ?>
+				</ul>
+			</div>
+			<?php $_counter++ ?>
+		<?php endforeach ?>
+	<script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])</script>
+</div>

@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <DDE_Loggi>
+            <version>1.0.0</version>
+        </DDE_Loggi>
+    </modules>
+    <global>
+        <helpers>
+            <loggi>
+                <class>DDE_Loggi_Helper</class>
+            </loggi>
+        </helpers>
+        <models>
+            <loggi>
+                <class>DDE_Loggi_Model</class>
+                <resourceModel>loggi_mysql4</resourceModel>
+            </loggi>
+        </models>
+        <resources>
+            <dde_loggi_setup>
+                <setup>
+                    <module>DDE_Loggi</module>
+                </setup>
+                <connection>
+                    <use>directory_setup</use>
+                </connection>
+            </dde_loggi_setup>
+        </resources>
+    </global>
+    <default>
+        <carriers>
+            <loggi>
+                <active>1</active>
+                <model>loggi/carrier_loggi</model>
+                <name>collect</name>
+                <title>Entrega à Jato</title>
+                <description>Entrega Rápida SP</description>
+                <sort_order>0</sort_order>
+            </loggi>
+        </carriers>
+    </default>
+</config>

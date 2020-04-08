@@ -1,0 +1,114 @@
+<?php
+	date_default_timezone_set('America/Sao_Paulo');
+	$session = Mage::getSingleton('core/session');
+?>
+
+<?php if(isset($_GET['registered']) && $_GET['registered'] == 1): ?>
+	<?php
+		/*$_date = new DateTime(date('Y-m-d H:i:s'));
+		$_add = 24 - $_date->format('H');
+		$_date->add(new DateInterval('PT'.$_add.'H'));
+		setcookie('splash_screen', 'TRUE', $_date->format('U'));*/
+
+		$_date = new DateTime(date('Y-m-d H:i:s'));
+		$_add = 24 - $_date->format('H');
+		$_date->add(new DateInterval('PT'.$_add.'H'));
+		// setcookie('splash_screen', 'TRUE', $_date->format('U'), '/', '.reciclaluxo.com.br');
+		setcookie('splash_screen', 'TRUE', $_date->format('U'));
+
+		// $session->setShowSplashScreen(FALSE);
+	?>
+<?php endif ?>
+
+<?php //if( FALSE ): ?>
+<?php //if( $session->getShowSplashScreen() !== FALSE && (!isset($_GET['registered']) || $_GET['registered'] != 1) ): ?>
+<?php if( !isset($_COOKIE['splash_screen']) && (!isset($_GET['registered']) || $_GET['registered'] != 1) ): ?>
+	<div class="splash-newsletter-container hidden-xs hidden-sm" style="display: none">
+		<div id="splash-newsletter">
+			<!-- <a href="#" class="close">X</a> -->
+			<!-- <div class="img"></div> -->
+			<div class="info">
+				<a href="#" class="close">X</a>
+				<!-- <p class="text">Assine nossa newsleter e<br />receba nossas novidades!</p> -->
+				<p class="text">Subscreva a nossa newsletter e receba regularmente as nossas ofertas especiais.<br/>A inscrição é gratuita!</p>
+				<?php echo $this->getLayout()->createBlock('newsletter/subscribe')->setTemplate('newsletter/splash.phtml')->toHtml() ?>
+			</div>
+
+			<script type="text/javascript">
+				// Show lightbox
+				function showLightbox(){
+					jQuery('.splash-newsletter-container').fadeIn({
+						duration: 350,
+						complete: function(){
+							jQuery('.splash-newsletter-container').addClass('active');
+						}
+					});
+				}
+
+				// Hide lightbox
+				function hideLightbox(){
+					jQuery('.splash-newsletter-container').fadeOut({
+						duration: 200,
+						complete: function(){
+							jQuery('.splash-newsletter-container').removeClass('active');
+						}
+					});
+				}
+
+				jQuery('body,html').on('click','#splash-newsletter .close', function(e){
+					e.preventDefault();
+
+					// jQuery('.splash-newsletter-container').fadeOut(300);
+					hideLightbox();
+					// jQuery('#splash-newsletter').fadeOut({duration: 350, complete: function(){jQuery('#splash-newsletter').remove();}});
+					// jQuery('.canvas').fadeOut({duration: 350, complete: function(){jQuery('.canvas').remove();}});
+				});
+
+				setTimeout(showLightbox, 5000);
+
+				// Show lightbox on window leave
+				var showLightboxOnLeave = true;
+				var displayLightboxOnLeave = function(e){
+					var from = e.relatedTarget || e.toElement;
+					if( !from || from.nodeName == 'HTML' ){
+						var $lightbox = jQuery('.splash-newsletter-container');
+
+						if( showLightboxOnLeave && !$lightbox.hasClass('active') ){
+							// Disable variable
+							showLightboxOnLeave = false;
+
+							// Remove event observer to avoid memory leak
+							jQuery(document).off('mouseout', displayLightboxOnLeave);
+
+							// Show lightbox
+							showLightbox();
+						}
+					}
+				};
+
+				jQuery(document).on('mouseout', displayLightboxOnLeave);
+
+				// Update cookie lifetime
+				jQuery('body').on('submit', '.splash-newsletter-container form', function(e){
+					jQuery.ajax({
+						url: ajaxBaseUrl+'cliente/varnish/updatecookie'
+					});
+				});
+			</script>
+		</div>
+	</div>
+	<?php
+		/*$_date = new DateTime(date('Y-m-d H:i:s'));
+		$_add = 24 - $_date->format('H');
+		$_date->add(new DateInterval('PT'.$_add.'H'));
+		setcookie('splash_screen', 'TRUE', $_date->format('U'));*/
+
+		// $session->setShowSplashScreen(FALSE);
+	?>
+	<?php
+		$_date = new DateTime(date('Y-m-d H:i:s'));
+		$_date->add(new DateInterval('P7D'));
+		setcookie('splash_screen', 'TRUE', $_date->format('U'));
+	?>
+<?php //endif ?>
+<?php endif ?>

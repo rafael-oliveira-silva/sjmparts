@@ -1,0 +1,14 @@
+/*Pre header*/
+.pre-header .assistencia{ background-image: url(../images/assistencia_tecnica_icon.png); background-repeat: no-repeat; background-position-x: left; background-position-y: center; }
+
+/*Catalog: Product View*/
+.add-to-cart button.button span{ background-image: url(../images/buy_btn_bg.jpg); background-position-x: top; background-position-y: center; background-repeat: repeat-x; }
+
+/*Checkout*/
+.button.btn-checkout span{ background-image: url(../images/buy_checkout_btn_bg.jpg); background-repeat: no-repeat; background-position-x: left; background-position-y: center; }
+.button.btn-checkout span span{ background-image: none; }
+
+/*Footer*/
+.footer-block .certificados{ margin-left: 29px; }
+.footer-block .payment-methods{ width: 225px; }
+.col-right.sidebar .block-subscribe .actions button.button span{width: 140px !important;}

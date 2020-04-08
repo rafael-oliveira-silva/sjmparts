@@ -1,0 +1,21 @@
+<?php
+/**
+ * DDE_Cliente extension for Magento
+ *
+ * @category   DDE
+ * @package    DDE_Cliente
+ * @version    1.1.0
+ */
+?>
+<div class="field taxvat">
+	<label for="<?php echo $this->getFieldId('taxvat')?>"<?php if ($this->isRequired()) echo ' class="required"' ?>><?php if ($this->isRequired()) echo '<em>*</em>' ?><?php if($this->getTipo() == 2): ?><?php echo $this->__('CNPJ') ?><?php else: ?><?php echo $this->__('CPF') ?><?php endif ?></label>
+	<div class="input-box">
+	    <input type="text" id="<?php echo $this->getFieldId('taxvat')?>" name="<?php echo $this->getFieldName('taxvat')?>" value="<?php echo $this->escapeHtml($this->getTaxvat()) ?>" title="<?php if($this->getTipo() == 2): ?><?php echo $this->__('CNPJ') ?><?php else: ?><?php echo $this->__('CPF') ?><?php endif ?>" class="input-text <?php echo $this->helper('customer/address')->getAttributeValidationClass('taxvat') ?>" <?php echo $this->getFieldParams() ?> />
+	</div>
+</div>
+<script type="text/javascript">
+	//<![CDATA[
+	$('<?php echo $this->getFieldId('taxvat'); ?>').addClassName('validar_cpf');
+	Validation.add('validar_cpf', 'O número informado é inválido', function(v){return validaTaxvat(v,0);});
+	//]]>
+</script>

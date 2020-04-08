@@ -1,0 +1,25 @@
+.ibanner-content-top{width: 1190px; height: 292px; margin: 0px auto 8px; clear: both; overflow:hidden;}
+.ibanner-content-top .pikachoose{  }
+.pikachoose {margin: 0 auto;}
+.pika-stage {position: relative;}
+
+	.pika-stage .pika-aniwrap,
+    .pika-stage .main-image {position: absolute; top: 0; left: 0;}
+	.pika-stage .pika-aniwrap{width:100%;}
+	.pika-stage .pika-ani {position:relative;display: none;z-index:2;margin:0 auto;}
+	.pika-stage img {border:0;height:100%; width: 100%; }
+
+    .pika-stage .caption {position: absolute; background:#000; background: rgba(0,0,0,0.75);  border: 1px solid #141414; font-size: 11px; color: #fafafa; padding: 10px; text-align: right; bottom: 20px; right: 10px;}
+	.pika-stage .caption p {padding: 0; margin: 0; line-height: 14px;}
+.pika-textnav{  }
+.pika-textnav a{ position: absolute; top: 122px; text-indent: -9999px; width: 48px; height: 48px; cursor: pointer; }
+.pika-textnav .next{ background: url(../images/slider_right_arrow.png) center center no-repeat; right: 10px; }
+.pika-textnav .previous{ background: url(../images/slider_left_arrow.png) center center no-repeat; left: 10px; }
+.pika-imgnav{ display: none !important; }
+.pika-counter{position: absolute;bottom: -20px;left:15px;font-size:11px;}
+
+#pikame{display:none;}
+
+.pikachoose-caption-no .pika-stage .caption {display: none !important;}
+.pikachoose-caption-left .pika-stage .caption {left: 10px !important; right: auto !important;}
+.pikachoose-caption-right .pika-stage .caption {right: 10px !important; left: auto !important;}

@@ -1,0 +1,57 @@
+<!--@subject Good reason to come back to {{var store_name}} @-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width"/>
+</head>
+<body>
+
+<table border="0" cellpadding="0" cellspacing="0" style="margin:0;">
+    <tr>
+        <td style="background-color: #EEE; padding:30px 37px 50px;" align="right">
+                <table style="box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.26); background-color: #FFF;" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td align="center" style="padding: 20px 35px 35px; text-align: left;">
+                            <table border="0" cellpadding="0" cellspacing="0" style="margin: 0px; width: 100%; border-bottom: 1px solid rgb(11, 199, 255);">
+                                <tr>
+                                    <td align="right" valign="top">
+                                        <h3 style="margin: 0px 2px 0px 0px; color: #616161; font: 12px Helvetica, sans-serif; line-height: 15px; -webkit-text-size-adjust:none; text-align: right;">Images not displaying?<a href="#" style="color: #616161; font: 12px Helvetica, sans-serif; padding: 0px 0px 0px 5px; line-height: 15px; -webkit-text-size-adjust:none; display: inline-block;" target="_blank">Click here</a></h3>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="bottom">        
+                                        <a href="{{var store_url}}"><img style="display: block; margin: 15px 0; text-align: left; max-width: 100%; padding: 0" src="{{var logo_url}}" alt="{{var logo_alt}}" /></a>
+                                    </td>
+                                </tr>
+                            </table>
+                            <h3 style="margin: 30px 0px 0px; color: #696060; font: 14px Helvetica, sans-serif; -webkit-text-size-adjust:none; clear: both;">Hi {{var customer_name}},</h3>
+                            <h3 style="margin: 15px 0px 0px; color: #696060; font: 14px Helvetica, sans-serif; -webkit-text-size-adjust:none; clear: both;">It was awesome seeing you at {{var store_name}}!</h3>
+                            <h3 style="margin: 15px 0px 0px; color: #696060; font: 14px Helvetica, sans-serif; -webkit-text-size-adjust:none; clear: both;">We’ve spotted that the following item(s) are still sitting in your cart:</h3>
+                            <h3 style="margin: 15px 0px 0px; color: #696060; font: 14px Helvetica, sans-serif; -webkit-text-size-adjust:none; clear: both;">{{var products}}</h3>
+                            {{depend coupon}}
+                            
+                            <h3 style="margin: 15px 0px 0px; color: #696060; font: 14px Helvetica, sans-serif; -webkit-text-size-adjust:none; clear: both;">
+                            There is a {{var discount_amount}} discount available for such items: <br />
+                            <strong>{{var coupon}}</strong><br/>
+                            Hurry up - the offer lasts for {{var coupon_days}} day(s) only!
+                            </h3>
+                            
+                            {{/depend}}
+                            
+                            <p style="text-align: center;padding-top: 20px;"><a href="{{var recover_url}}" style="display: inline-block;color: white;background: #71bc37;border: solid #71bc37;border-width: 10px 20px 8px;font-weight: bold;border-radius: 4px; text-decoration: none; font: 14px Helvetica, sans-serif;">RESTORE CART</a></p>
+                            <h3 style="margin: 15px 0px 0px; color: #696060; font: 14px Helvetica, sans-serif; -webkit-text-size-adjust:none; clear: both;">Cheers,<br />
+                            The {{var store_name}} team</h3>
+                        </td>
+                    </tr>
+                </table>
+        </td>
+    </tr>
+    <tr style="height: 30px">
+        <td align="center" style="padding-top: 35px;">
+            If you no longer wish to receive emails from us, click to <a style=" color: #888;text-decoration: none;" href="{{var unsubscribe_url}}">Unsubscribe</a>.
+        </td>
+    </tr>
+</table>
+</body>
+</html>

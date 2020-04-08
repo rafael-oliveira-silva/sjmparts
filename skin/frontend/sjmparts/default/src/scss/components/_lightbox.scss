@@ -1,0 +1,14 @@
+.lightbox-container {
+    background-color: rgba(0, 0, 0, 0.8);
+
+    button {
+        background: none;
+        color: #fff;
+        right: -2rem;
+        top: -3rem;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+}

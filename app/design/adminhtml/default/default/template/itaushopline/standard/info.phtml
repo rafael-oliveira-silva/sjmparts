@@ -1,0 +1,26 @@
+<p><strong><?php echo $this->htmlEscape($this->getMethod()->getTitle()) ?></strong></p>
+
+<?php if ($_specificInfo = $this->getSpecificInformation()):?>
+<table>
+    <tbody>
+    <?php foreach ($_specificInfo as $_label => $_value):?>
+        <tr>
+            <td><strong><?php echo $this->escapeHtml($_label)?>:</strong></td>
+            <td><?php echo nl2br(implode($this->getValueAsArray($_value, true), "\n"))?></td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
+<?php endif;?>
+
+<form style="display:none;" method="post" id="itaushopline_submit_form" action="<?php echo $this->_getStoreConfig ('submit_url'); ?>" target="_blank">
+<?php echo $this->getSubmitTransactionInformation (); ?>
+</form>
+
+<form method="post" id="itaushopline_query_form" action="<?php echo $this->_getStoreConfig ('query_url'); ?>" target="_blank">
+<?php echo $this->getQueryTransactionInformation (); ?>
+</form>
+
+<a href="<?php echo Mage::helper("adminhtml")->getUrl('itaushopline/adminhtml_standard/show/pedido/' . $this->getInfo()->getOrder()->getId()); ?>" target="_blank"><?php echo $this->__('Click here to view the billet'); ?></a>
+
+<?php echo $this->getChildHtml()?>

@@ -1,0 +1,6 @@
+.grid-full .level-top .level .catagory_children > li.level1 > a {
+    height: 64px;
+    line-height: normal !important;
+    overflow: hidden;
+	padding-top: 10px !important;
+}

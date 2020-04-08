@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<DDE_Jadlog>
+			<active>true</active>
+			<codePool>local</codePool>
+		</DDE_Jadlog>
+	</modules>
+</config>

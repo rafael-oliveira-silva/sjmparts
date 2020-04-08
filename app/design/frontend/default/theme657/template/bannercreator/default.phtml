@@ -1,0 +1,97 @@
+<div class="banner-creator-container row hidden-xs">
+	<link rel="stylesheet" type="text/css" href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS, array('_secure'=>true)) ?>bannercreator/swiper/dist/css/swiper.min.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS, array('_secure'=>true)) ?>bannercreator/styles.css" media="all" />
+	<div class="col-xs-12 text-center">
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<?php foreach( $this->getItems() as $item ): ?>
+					<div class="swiper-slide">
+						<?php if($item->getUrl()): ?>
+							<a href="<?php echo $item->getUrl() ?>">
+						<?php endif ?>
+						<div class="main-content-container">
+							<?php if( $item->getImagePosition() == 'left' ): ?>
+								<div class="main-image-container main-image-container-left text-center">
+									<div style="display: inline-block; max-width: 97%; vertical-align: middle; height: 100%;"></div>
+									<div style="display: inline-block; max-width: 97%; vertical-align: middle;">
+										<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA, array('_secure'=>true)).$item->getImageFilepath() ?>" class="img-responsive" />
+									</div>
+								</div>
+								<div class="text-container text-container-right">
+									<div style="display: inline-block; max-width: 97%; vertical-align: middle; height: 100%;"></div>
+									<div style="display: inline-block; max-width: 97%; vertical-align: middle;">
+										<?php if( !is_null($item->getData('row_1_image_filepath')) ): ?>
+											<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA, array('_secure'=>true)).$item->getData('row_1_image_filepath') ?>" class="img-responsive" />
+										<?php elseif( !is_null($item->getData('row_1_text')) ): ?>
+											<p style="font-weight: 500; color: <?php echo $item->getData('row_1_color') ?>; font-size: <?php echo $item->getData('row_1_font_size') ?>px; line-height: <?php echo round($item->getData('row_1_font_size')*1) ?>px"><?php echo $item->getData('row_1_text') ?></p>
+										<?php endif ?>
+
+										<?php if( !is_null($item->getData('row_2_image_filepath')) ): ?>
+											<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA, array('_secure'=>true)).$item->getData('row_2_image_filepath') ?>" class="img-responsive" />
+										<?php elseif( !is_null($item->getData('row_2_text')) ): ?>
+											<p style="font-weight: 500; color: <?php echo $item->getData('row_2_color') ?>; font-size: <?php echo $item->getData('row_2_font_size') ?>px; line-height: <?php echo round($item->getData('row_2_font_size')*1) ?>px"><?php echo $item->getData('row_2_text') ?></p>
+										<?php endif ?>
+
+										<?php if( !is_null($item->getData('row_3_image_filepath')) ): ?>
+											<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA, array('_secure'=>true)).$item->getData('row_3_image_filepath') ?>" class="img-responsive" />
+										<?php elseif( !is_null($item->getData('row_3_text')) ): ?>
+											<p style="font-weight: 500; color: <?php echo $item->getData('row_3_color') ?>; font-size: <?php echo $item->getData('row_3_font_size') ?>px; line-height: <?php echo round($item->getData('row_3_font_size')*1) ?>px"><?php echo $item->getData('row_3_text') ?></p>
+										<?php endif ?>
+									</div>
+								</div>
+							<?php else: ?>
+								<div class="text-container text-container-left">
+									<div style="display: inline-block; max-width: 97%; vertical-align: middle; height: 100%;"></div>
+									<div style="display: inline-block; max-width: 97%; vertical-align: middle;">
+										<?php if( !is_null($item->getData('row_1_image_filepath')) ): ?>
+											<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA, array('_secure'=>true)).$item->getData('row_2_image_filepath') ?>" class="img-responsive" />
+										<?php elseif( !is_null($item->getData('row_1_text')) ): ?>
+											<p style="font-weight: 500; color: <?php echo $item->getData('row_1_color') ?>; font-size: <?php echo $item->getData('row_1_font_size') ?>px; line-height: <?php echo round($item->getData('row_1_font_size')*1) ?>px"><?php echo $item->getData('row_1_text') ?></p>
+										<?php endif ?>
+
+										<?php if( !is_null($item->getData('row_2_image_filepath')) ): ?>
+											<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA, array('_secure'=>true)).$item->getData('row_2_image_filepath') ?>" class="img-responsive" />
+										<?php elseif( !is_null($item->getData('row_2_text')) ): ?>
+											<p style="font-weight: 500; color: <?php echo $item->getData('row_2_color') ?>; font-size: <?php echo $item->getData('row_2_font_size') ?>px; line-height: <?php echo round($item->getData('row_2_font_size')*1) ?>px"><?php echo $item->getData('row_2_text') ?></p>
+										<?php endif ?>
+
+										<?php if( !is_null($item->getData('row_3_image_filepath')) ): ?>
+											<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA, array('_secure'=>true)).$item->getData('row_3_image_filepath') ?>" class="img-responsive" />
+										<?php elseif( !is_null($item->getData('row_3_text')) ): ?>
+											<p style="font-weight: 500; color: <?php echo $item->getData('row_3_color') ?>; font-size: <?php echo $item->getData('row_3_font_size') ?>px; line-height: <?php echo round($item->getData('row_3_font_size')*1) ?>px"><?php echo $item->getData('row_3_text') ?></p>
+										<?php endif ?>
+									</div>
+								</div>
+								<div class="main-image-container main-image-container-right text-center">
+									<div style="display: inline-block; max-width: 97%; vertical-align: middle; height: 100%;"></div>
+									<div style="display: inline-block; max-width: 97%; vertical-align: middle;">
+										<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA, array('_secure'=>true)).$item->getImageFilepath() ?>" class="img-responsive" />
+									</div>
+								</div>
+							<?php endif ?>
+						</div>
+						<?php if($item->getUrl()): ?>
+							</a>
+						<?php endif ?>
+					</div>
+				<?php endforeach ?>
+			</div>
+
+			<div class="swiper-button-prev"></div>
+    		<div class="swiper-button-next"></div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS, array('_secure'=>true)) ?>bannercreator/swiper/dist/js/swiper.jquery.min.js"></script>
+	<script type="text/javascript">
+		var mainSlider = jQuery('.banner-creator-container .swiper-container').swiper({
+			speed: 1000,
+			autoplay: 6000,
+			loop: true,
+
+			// Navigation arrows
+			nextButton: '.swiper-button-next',
+			prevButton: '.swiper-button-prev',
+		});
+	</script>
+</div>

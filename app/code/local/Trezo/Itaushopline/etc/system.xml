@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <sections>
+        <payment translate="label" module="itaushopline">
+            <groups>
+                <itaushopline_standard translate="label" module="itaushopline">
+                    <label>Itau ShopLine</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </title>
+                        <active_cron translate="label">
+                            <label>Activate CRON</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Utilizado para ativar/desativar CRON]]></comment>
+                        </active_cron>
+                        <order_status translate="label">
+                            <label>New Order Status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>itaushopline/system_config_source_order_status</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </order_status>
+                        <status_to_verify>
+                            <label>Order Status to Verify</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>itaushopline/system_config_source_order_status</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Utilizado para verificar pedidos pagos via CRON]]></comment>
+                        </status_to_verify>
+                        <allowspecific translate="label">
+                            <label>Payment Applicable From</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>40</sort_order>
+                            <source_model>adminhtml/system_config_source_payment_allspecificcountries</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </allowspecific>
+                        <specificcountry translate="label">
+                            <label>Countries Payment Applicable From</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <sort_order>50</sort_order>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><allowspecific>1</allowspecific></depends>
+                        </specificcountry>
+                        <sort_order translate="label">
+                            <label>Sort Order</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sort_order>
+                    </fields>
+                </itaushopline_standard>
+                <itaushopline_settings>
+                    <label>Itau ShopLine - Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>101</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <debug translate="label">
+                            <label>Debug</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </debug>
+                        <submit_url translate="label">
+                            <label>Submit URL</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[https://shopline.itau.com.br/shopline/Impressao.aspx]]></comment>
+                        </submit_url>
+                        <query_url translate="label">
+                            <label>Query URL</label>
+                            <frontend_type>text</frontend_type>
+                            <validate>required-entry</validate>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[https://shopline.itau.com.br/shopline/consulta.asp]]></comment>
+                        </query_url>
+                        <return_url translate="label">
+                            <label>Return URL</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </return_url>
+                        <code translate="label">
+                            <label>Code</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </code>
+                        <key translate="label">
+                            <label>Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </key>
+                        <taxvat_attribute translate="label">
+                            <label>Atributo CPF/CNPJ</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>itaushopline/system_config_source_customer_attributes</source_model>
+                            <sort_order>65</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </taxvat_attribute>
+                        <expiration translate="label">
+                            <label>Quantidade de dias para vencimento do boleto</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </expiration>
+                        <adicional_days_to_transaction_expiration>
+                            <label>Dias adicionais para expiração da transação</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Adiciona dias a mais para a expiração da transação do boleto, ideal para quando o banco demora a confirmar o pagamento.]]></comment>
+                        </adicional_days_to_transaction_expiration>
+                        <holidays translate="label">
+                            <label>Feriados</label>
+                            <frontend_model>itaushopline/adminhtml_system_config_form_field_holiday</frontend_model>
+                            <backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Define os feriados do ano para acrescentar um dia a mais na data de vencimento caso tenha um feriado entre a data de geração e de expiração do boleto. Utilizar o formato de data DD/MM ]]></comment>
+                        </holidays>
+                        <obsadd3 translate="label">
+                            <label>Additional Observation 3</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Max de 60 caracteres, caso contrario apresenta erro de loja]]></comment>
+                        </obsadd3>
+                        <enable_email translate="label">
+                            <label>Habilitar avisos por e-mail</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Habilitar avisos ao administrador references a erros na aprovação automática dos boletos (valor divergente e outros erros)]]></comment>
+                        </enable_email>
+                        <email_name translate="label">
+                            <label>Nome do remetente</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>130</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><enable_email>1</enable_email></depends>
+                        </email_name>
+                        <email_to translate="label">
+                            <label>Destinatário do e-mail</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>140</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><enable_email>1</enable_email></depends>
+                        </email_to>
+                        <cancellation_email_template translate="label">
+                            <label>Cancellation Email Template</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Select the email template to be sent</comment>
+                        </cancellation_email_template>
+                    </fields>
+                </itaushopline_settings>
+            </groups>
+        </payment>
+    </sections>
+</config>

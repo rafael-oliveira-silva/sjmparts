@@ -1,0 +1,22 @@
+<?php
+   $content = $this->getChildHtml();
+   $hasContent = !empty($content);
+
+   /** @var Mage_Core_Model_Session $session */
+   $session = Mage::getSingleton('core/session');
+   $showLightbox = $session->getData('hide_homepage_lightbox') !== true;
+?>
+
+<?php if ($hasContent && $showLightbox): ?>
+    <div class="lightbox-container inset-0 fixed z-10 items-center flex justify-center">
+        <div class="relative">
+            <button class="border-0 absolute text-4xl">
+                <i class="fa fa-times-circle"></i>
+            </button>
+            <?php echo $this->getChildHtml(); ?>
+        </div>
+    </div>
+    <?php
+       $session->setData('hide_homepage_lightbox', true);
+    ?>
+<?php endif; ?>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <menu>
+        <trezo translate="title" module="itaushopline">
+            <title>Boletos Itaú</title>
+            <sort_order>1000</sort_order>
+            <children>
+                <itaushopline_transactions translate="title" module="itaushopline">
+                    <title>Manage Itau ShopLine Transactions</title>
+                    <action>itaushopline/adminhtml_transactions</action>
+                    <sort_order>2000</sort_order>
+                </itaushopline_transactions>
+            </children>
+        </trezo>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <trezo translate="title" module="itaushopline">
+                        <title>Trezo</title>
+                        <sort_order>1000</sort_order>
+                        <children>
+                            <itaushopline_transactions translate="title" module="itaushopline">
+                                <title>Manage Itau ShopLine Transactions</title>
+                                <sort_order>2000</sort_order>
+                            </itaushopline_transactions>
+                            <itaushopline_standard translate="title" module="itaushopline">
+                                <title>View billets on admin</title>
+                                <sort_order>3000</sort_order>
+                            </itaushopline_standard>
+                        </children>
+                    </trezo>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>
+

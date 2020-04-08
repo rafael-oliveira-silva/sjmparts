@@ -1,0 +1,197 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+?>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div class="shadow"></div>
+<div class="swipe-left"></div>
+<div class="swipe">
+    <div class="swipe-menu">
+        <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->__('Home') ?>" class="home-link"><?php echo $this->__('Home') ?></a>
+        <?php echo $this->getChildHtml('topLinks') ?>
+        <?php // echo $this->getChildHtml('currency_2') ?>
+        <?php // echo $this->getChildHtml('store_language_2') ?>
+        <?php echo $this->getChildHtml('footer_links') ?>
+        <?php echo $this->getChildHtml('cms_footer_links') ?>
+        <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('cms_footer_links')->toHtml() ?>
+        <div class="footer-links-menu">
+            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer_links')->toHtml() ?>
+            <?php // echo $this->getLayout()->createBlock('core/template')->setTemplate('page/template/custum_link_header.phtml')->toHtml(); ?>
+        </div>
+    </div>
+</div>
+<div class="top-icon-menu">
+    <div class="swipe-control"><i class="fa fa-align-justify"></i></div>
+    <div class="top-search"><i class="fa fa-search"></i></div>
+    <span class="clear"></span>
+</div>
+<div class="header-container">
+	<div class="top-header hidden-xs">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 pull-left">
+					<div class="header-txt-holder">
+						<p class="header-pecas" style="font-size:15px;">Disque</p>
+						<p class="header-pecas" style="font-size:17px;">Peças</p>
+					</div>
+					<span class="header-phone"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('disque_pecas')->toHtml() ?></span>
+				</div>
+				<!--div class="col-md-2 pull-left">
+					<div class="header-txt-holder">
+						<p class="header-pecas" style="font-size:11px;">Assistência</p>
+						<p class="header-pecas" style="font-size:17px;">Técnica</p>
+					</div>
+					<span class="header-phone"><?php // echo $this->getLayout()->createBlock('cms/block')->setBlockId('assistencia_tecnica')->toHtml() ?></span>
+				</div-->
+				<div class="col-md-3 pull-left">
+					<div class="header-txt-holder">
+						<p class="header-pecas" style="font-size:15px;">Demais</p>
+						<p class="header-pecas" style="font-size:11px;">Localidades</p>
+					</div>
+					<span class="header-phone"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('demais_localidades')->toHtml() ?></span>
+				</div>
+				<div class="col-md-6 pull-right blue-link">
+                    <?php $_userCheck = $this->helper('customer'); ?>
+                    <?php if($_userCheck->isLoggedIn()): ?>
+                        <a href="<?php echo $_userCheck->getLogoutUrl() ?>">Sair</a><p>|</p>
+                        <a href="<?php echo $this->getUrl('peca-sua-peca') ?>" style="font-weight: bold;">Fale conosco</a><p>|</p>
+                        <a href="<?php echo $this->getUrl('customer/account') ?>">Olá <?php echo $_userCheck->getCustomerName() ?></a>
+                    <?php else: ?>
+                        <a href="<?php echo $this->getUrl('peca-sua-peca') ?>" style="font-weight: bold;">Fale conosco</a><p>|</p>
+                        <a href="<?php echo $this->getUrl('customer/account') ?>">Acompanhe seu pedido</a><p>|</p>
+                        <a href="<?php echo $this->getUrl('customer/account/create') ?>">Cadastre-se</a>
+                    <?php endif ?>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container main-header-container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="row">
+					<div class="header">
+						<div class="col-xs-12 col-sm-6 col-md-6">
+							 <?php if ($this->getIsHomePage()):?>
+								<h1 class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>
+							<?php else:?>
+								<a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
+							<?php endif?>
+						</div>
+						<div class="col-xs-12 col-md-6 col-sm-6 text-center">
+							<div class="header-right">
+								 <?php echo $this->getChildHtml('cart_header'); ?>
+								 <p class="welcome-msg"><?php //echo $this->getWelcome() ?> <?php //echo $this->getAdditionalHtml() ?>Ver <br/>carrinho</p>
+							</div>
+							<div class="header-center">
+								<?php echo $this->getChildHtml('topSearch') ?>
+							</div>
+						</div>
+						<div class="skip-links"> <span href="#header-account" class="skip-link skip-account"></span></div>
+						<div id="header-account" class="skip-content"></div>
+
+						<div class="clear"></div>
+						<?php echo $this->getChildHtml('topContainer'); ?>
+					</div>
+				</div>
+            </div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<?php 
+// if($_SERVER['REMOTE_ADDR'] == '201.6.233.203'){
+// 	return;
+// }
+?>
+<?php echo $this->getChildHtml('topMenu') ?>
+<?php /*if(Mage::getSingleton('cms/page')->getIdentifier() == 'home'  && Mage::app()->getFrontController()->getRequest()->getRouteName() == 'cms' ) :  ?>
+       <?php  echo ($this->getLayout()->createBlock('cms/block')->setBlockId('slider_1')->toHtml()); ?>
+       <?php  echo ($this->getLayout()->createBlock('cms/block')->setBlockId('block-row-1')->toHtml()); ?>
+	   <!-- javascript do popup -->
+		<script type="text/javascript" language="JavaScript"><!--
+		function HideContent(d) {
+		if(d.length < 1) { return; }
+		document.getElementById(d).style.display = "none";
+		}
+		function ShowContent(d) {
+		if(d.length < 1) { return; }
+		document.getElementById(d).style.display = "block";
+		}
+		function ReverseContentDisplay(d) {
+		if(d.length < 1) { return; }
+		if(document.getElementById(d).style.display == "none") { document.getElementById(d).style.display = "block"; }
+		else { document.getElementById(d).style.display = "none"; }
+		}
+		//-->
+		jQuery('body').on('click', function(){
+			HideContent('fundo-bg');
+		});
+		</script>
+		<!-- POP-UP HOMEPAGE -->
+			<div id="fundo-bg">
+				<div class="aviso">
+					<p><a href="#"><img src="<?php echo $this->getSkinUrl() ?>/images/sjmparts_recesso.png" style="width: 650px; height: auto; max-width:100%;"></a><br /></p>
+				</div>
+			</div>
+		<!-- POP-UP HOMEPAGE -->
+<?php endif;*/  ?>
+<script type="text/javascript">
+	/*jQuery(document).ready(function(){
+		// console.log('load');
+		var target = jQuery('.nav ul.grid-full li.level');
+		breakMenu(target, '&nbsp;');
+
+	});
+
+	function breakMenu(target, splitText){
+		// console.log('target: '+target);
+		// console.log('load');
+		jQuery.each(target, function(index, value){
+			// console.log(index);
+			// console.log(value);
+
+			jQuery(value).addClass('text-center');
+			var a = jQuery(value).html();
+			var menuText = a.split(splitText);
+			var newText = menuText.join('<br/>');
+
+			jQuery(value).html(newText);
+
+		});
+
+		return true;
+	}*/
+</script>
+

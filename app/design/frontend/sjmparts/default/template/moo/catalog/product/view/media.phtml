@@ -1,0 +1,134 @@
+<?php
+/**
+ * Moo Extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category   Moo
+ * @package    Moo_Catalog
+ * @author     Mohamed Alsharaf <mohamed.alsharaf@gmail.com>
+ * @copyright  Copyright (c) 2010 Mohamed Alsharaf. (http://jamandcheese-on-phptoast.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+/**
+ * Product media data template
+ *
+ * @see Mage_Catalog_Block_Product_View_Media
+ */
+?>
+<?php
+$_product = $this->getProduct();
+$_helper = $this->helper('catalog/output');
+$_productVideo = $_product->getData('youtube_video');
+?>
+<?php
+$galleryImages = $this->getGalleryImages();
+if (count($galleryImages) > 0) {
+    $gallery = '<div class="more-views">';
+    $gallery .= '<h2>' . $this->__('More Views') . '</h2>';
+	$gallery .= '<div class="container-slider">';
+    $gallery .= '<ul class="slider">';
+	 
+    // if unnempty add the video to the first thumbnail row
+    if(!empty($_productVideo)){
+        // get video key part
+        $urlExplode = explode('v=', $_productVideo);
+        $videoKey   = $urlExplode[1];
+
+        // get video data
+        // production key
+        // $apikey = 'AIzaSyB4xrn3zxWmECTdtcF2DAR1z8UcKq-xzpo';
+        // homolog key
+        // $apikey = 'AIzaSyB9ZDABG5ybBgxzj0LJJ8ZmH7zIgKKwxok';
+        // $data = file_get_contents("https://www.googleapis.com/youtube/v3/videos?key=".$apikey."&part=snippet&id=".$videoKey);
+        // $json = json_decode($data);
+        // Zend_Debug::dump($data);
+        // Zend_Debug::dump($json->items[0]->snippet->thumbnails);
+        // $defaultYoutubeThumbnail = $json->items[0]->snippet->thumbnails->default->url;
+        // exit;
+        $defaultYoutubeThumbnail = 'https://i1.ytimg.com/vi/'.$videoKey.'/0.jpg';
+        $gallery .= '<li class="video-holder">'
+                . '<a id="cloud-zoom-gallery" href="'.$defaultYoutubeThumbnail.'" data-youtube="'.$videoKey.'"'
+                . 'rel="useZoom: \'cloudZoom\', smallImage: \''.$defaultYoutubeThumbnail.'\'" class="cloud-zoom-gallery" title="Video do produto">'
+                . '<img src="'.$defaultYoutubeThumbnail.'" width="56" height="56" alt="Video do produto" />'
+                . '</a></li>';
+    }
+
+    foreach ($galleryImages as $_image) {
+        $gallery .= '<li>'
+                . '<a id="cloud-zoom-gallery" href="' . $this->helper('catalog/image')->init($this->getProduct(), 'image', $_image->getFile()) . '" '
+                . 'rel="useZoom: \'cloudZoom\', smallImage: \'' . $this->getCloudImage($this->getProduct(), $_image) . '\'" class="cloud-zoom-gallery" title="' . $this->htmlEscape($_image->getLabel()) . '">'
+                . '<img src="' . $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(56) . '" width="56" height="56" alt="' . $this->htmlEscape($_image->getLabel()) . '" />'
+                . '</a></li>';
+    }
+
+    $gallery .= '</ul></div></div>';
+}
+?>
+
+<?php if ($_product->getImage() != 'no_selection' && $_product->getImage()): ?>
+    <p class="product-image product-image-zoom">
+        <a rel="<?php echo $this->renderCloudOptions(); ?>" <?php echo $this->renderLightboxOptions(); ?> gallery="<?php echo $this->helper('catalog/image')->init($_product, 'image'); ?>" href="<?php echo $this->helper('catalog/image')->init($_product, 'image'); ?>" class="cloud-zoom" id="cloudZoom">
+            <?php
+            $_img = '<img id="image" src="'.$this->getCloudImage($_product).'" class="img-responsive" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'"/>';
+            echo $_helper->productAttribute($_product, $_img, 'image');
+            ?>
+        </a>
+    </p>
+    <?php if (isset($gallery)): ?>
+        <p class="zoom-notice" id="track_hint">Imagem meramente ilustrativa</p>
+        <?php echo $gallery; ?>
+    <?php endif; ?>
+<?php else: ?>
+    <p class="product-image">
+        <?php
+        $_img = '<img src="' . $this->helper('catalog/image')->init($_product, 'image')->resize(265) . '" alt="' . $this->htmlEscape($this->getImageLabel()) . '" title="' . $this->htmlEscape($this->getImageLabel()) . '" />';
+        echo $_helper->productAttribute($_product, $_img, 'image');
+        ?>
+    </p>
+<?php endif; ?>
+
+<?php if(!empty($_productVideo)): ?>
+    <script type="text/javascript">
+        // watch all thumbnails click
+        jQuery('body').on('mouseup', '.more-views .container-slider li', function(e){
+            e.preventDefault();
+            if(jQuery(this).hasClass('video-holder')) return;
+            var node = document.getElementById('cloudZoom');
+            
+            // remove the iframe if he exists
+            if(node.querySelector('iframe')){
+                console.log('removeu iframe');
+                node.querySelector('iframe').remove();
+            }
+            document.querySelector('.product-image-zoom').classList.remove('has-iframe');
+        });
+
+        // watch the iframe click
+        jQuery('body').on('mouseup', '.more-views .video-holder a', function(e){
+            e.preventDefault();
+            document.querySelector('.product-image-zoom').classList.add('has-iframe');
+
+            // get the key
+            var dataKey = jQuery('[data-youtube]').data('youtube');
+            
+            // create the iframe element
+            var iframe = document.createElement("iframe");
+            iframe.setAttribute("src", "//www.youtube.com/embed/"+dataKey);
+            iframe.style.width = "308px";
+            iframe.style.height = "301px";
+
+            // append the iframe
+            var node = document.getElementById('cloudZoom');
+            node.appendChild(iframe);
+        });
+    </script>
+<?php endif ?>
